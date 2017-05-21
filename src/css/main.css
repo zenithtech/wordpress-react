@@ -10,6 +10,10 @@ a:hover {
 	text-decoration: none;
 }
 
+js {
+    display: none;
+}
+
 /* START #react_header */
 
 #react_header {
