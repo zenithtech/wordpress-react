@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+a,
+a:active,
+a:focus,
+a:hover {
+	text-decoration: none;
+}
+
+/* START #react_header */
+
+#react_header {
+    position: relative;
+    z-index: 999;
+}
+#react_header ul#top-menu,
+#react_header ul#top-menu ul {
+    display: block;
+    width: auto;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+#react_header ul#top-menu li ul.sub-menu {
+	display: none;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+#react_header ul#top-menu li ul.sub-menu > li {
+	display: block;
+    position: relative;
+}
+#react_header ul#top-menu > li > ul.sub-menu li > ul.sub-menu {
+    left: 100%;
+    right: auto;
+    top: 0;
+    position: absolute;
+}
+#react_header ul#top-menu li {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+#react_header ul#top-menu li:hover > a {
+	background-color: #e7f4ff;
+}
+#react_header ul#top-menu li.menu-item-has-children:hover > ul.sub-menu {
+    display: block;
+    width: 100%;
+}
+#react_header ul#top-menu li a {
+	color: #0275d8;
+}
+#react_header ul#top-menu li a {
+    display: block;
+    line-height: 1;
+    padding: 10px 20px;
+    text-align: left;
+    background-color: #eee;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 16px;
+}
+#react_header ul#top-menu li.menu-item-has-children > a:after {
+    content: '\f0d7';
+    position: relative;
+    font-family: 'FontAwesome';
+    margin: 0;
+    padding: 0 0 0 10px;
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+}
+#react_header ul#top-menu li.menu-item-has-children:hover > a:after {
+    content: '\f0da';
+}
+#react_header ul#top-menu li.current_page_item > a {
+	color: #fff;
+	background-color: #0275d8;
+}
+/* END #react_header */
+
+/* START #react_page */
+#react_page > article {}
+#react_page > article > .loading {
+    text-align: center;
+    padding: 40px 0;
+    font-size: 32px;
+    color: #0275d8;
+}
+/* END #react_page */

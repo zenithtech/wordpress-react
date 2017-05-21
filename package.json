@@ -1,0 +1,48 @@
+{
+  "name": "wp-react",
+  "description": "Single-page React/Flux Wordpress theme.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Sami Shelah",
+    "email": "sami.shelah@icloud.com"
+  },
+  "dependencies": {
+    "flux": "^3.1.2",
+    "immutability-helper": "^2.1.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.2.2",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "bootstrap": "^4.0.0-alpha.6",
+    "css-loader": "^0.27.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.10.1",
+    "font-awesome": "^4.7.0",
+    "html-loader": "^0.4.5",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.2",
+    "path": "^0.12.7",
+    "style-loader": "^0.16.0",
+    "svg-inline-loader": "^0.7.1",
+    "uglify-js": "^2.8.16",
+    "uglifyjs-webpack-plugin": "^0.3.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.3.1",
+    "webpack-assets-manifest": "^0.6.2"
+  },
+  "scripts": {
+    "prod": "webpack --colors --progress --config webpack.prod.config.js",
+    "dev": "webpack --colors --progress --watch --config webpack.dev.config.js"
+  }
+}
