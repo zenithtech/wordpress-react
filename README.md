@@ -32,4 +32,6 @@ production: [https://zenitht.com/wp/](https://zenitht.com/wp/)
 
 dev: [https://zenitht.com/wp/?dev](https://zenitht.com/wp/?dev)
 
+u: wp / p: wp
+
 ----
