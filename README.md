@@ -12,8 +12,8 @@ To install:
 2. Activate the theme in wp-admin
 3. cd into this theme folder
 4. Run `npm install`
-5. For <b>dev</b> version run `npm run dev` <i>(accessed with the `?dev` query string)</i>
-6. For <b>production</b> version run `npm run prod`
+5. To build the <b>dev</b> version, run `npm run dev` <i>(accessed with the `?dev` query string)</i>
+6. To build the <b>production</b> version, run `npm run prod`
 7. Edit this line in the `.htaccess` file:
 
     `RewriteRule . /index.php [L]`
