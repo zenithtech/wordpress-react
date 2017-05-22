@@ -1,5 +1,9 @@
 # wordpress-react
-This is a single-page [React](https://facebook.github.io/react/)/[Flux](https://facebook.github.io/flux/) [Wordpress](https://wordpress.com/) theme.
+A single-page [Wordpress](https://wordpress.com/) bootstrap theme built with [React](https://facebook.github.io/react/) and [Flux](https://facebook.github.io/flux/). Features include:
+- No need to install any Wordpress plugins
+- Separate `dev` and `production` builds <i>(accessed with the `?dev` query string)</i>
+- Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
+- Requested pages are cached
 
 ----
 
@@ -12,8 +16,8 @@ To install:
 2. Activate the theme in wp-admin
 3. cd into this theme folder
 4. Run `npm install`
-5. To build the <b>dev</b> version, run `npm run dev` <i>(accessed with the `?dev` query string)</i>
-6. To build the <b>production</b> version, run `npm run prod`
+5. Run `npm run dev` to build the <b>dev</b> version
+6. Run `npm run prod` to build the <b>production</b> version
 7. Edit this line in the `.htaccess` file:
 
     `RewriteRule . /index.php [L]`
