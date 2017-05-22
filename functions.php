@@ -50,41 +50,6 @@ function get_wp_installation(){
     return $ar[0];
 }
 
-function build_menu_tree( array &$elements, $parentId = 0 ){
-    $branch = array();
-    foreach ( $elements as &$element )
-    {
-        if ( $element['menu_item_parent'] == $parentId )
-        {
-            $children = build_menu_tree( $elements, $element['ID'] );
-            if ( $children )
-            {
-                $element['children'] = $children;
-            }
-            $branch[$element['ID']] = $element;
-            unset( $element );
-        }
-    }
-    return $branch;
-}
-
-function get_menu_tree( $menu_id ){
-    $items = wp_get_nav_menu_items( $menu_id );
-
-    if( ! $items )
-        return;
-
-    $tmp = [];
-    foreach( $items as $key => $item )
-        $tmp[$item->ID] = [ 
-            'ID'        => $item->ID, 
-            'menu_item_parent' => $item->menu_item_parent, 
-            'title'     => $item->title 
-        ];
-
-    return build_menu_tree( $tmp, 0 );
-}
-
 add_action( 'wp_ajax_nopriv_get_page_by_id', 'get_page_by_id' );
 add_action( 'wp_ajax_get_page_by_id', 'get_page_by_id' );
 function get_page_by_id() {
