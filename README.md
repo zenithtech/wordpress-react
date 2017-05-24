@@ -1,9 +1,12 @@
 # wordpress-react
-A single-page [Wordpress](https://wordpress.com/) bootstrap theme built with [React](https://facebook.github.io/react/) and [Flux](https://facebook.github.io/flux/). Features include:
+A single-page [Wordpress](https://wordpress.com/) bootstrap theme built with [React](https://facebook.github.io/react/) and [Flux](https://facebook.github.io/flux/).
+
+## Features
 - No need to install any Wordpress plugins
 - Separate `dev` and `production` builds <i>(accessed with the `?dev` query string)</i>
 - Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
 - Requested pages are cached
+- Uses [react-router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router) and [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
 
 ----
 
@@ -11,7 +14,7 @@ This is <b>work-in-progress.</b> Not recommended for use on a live site. Several
 
 ----
 
-To install:
+## Installation
 1. Download or clone this repository into your Wordpress 'themes' folder
 2. Activate the theme in wp-admin
 3. cd into this theme folder
@@ -31,7 +34,7 @@ That's all!
 
 ----
 
-Examples:
+## Example
 
 production: [https://zenitht.com/wp/](https://zenitht.com/wp/)
 
