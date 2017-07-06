@@ -43,3 +43,7 @@ dev: [https://zenitht.com/wp/?dev](https://zenitht.com/wp/?dev)
 u: wp / p: wp
 
 ----
+
+## License ##
+
+This package is licensed under MIT license. See LICENSE for details.
