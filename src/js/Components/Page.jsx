@@ -61,8 +61,7 @@ class Page extends Component {
 		}
 
 		return (
-			<article data-id={current_page_id} dangerouslySetInnerHTML={{__html: html}}>
-			</article>
+			<article data-id={current_page_id} dangerouslySetInnerHTML={{__html: html}}></article>
 		);
 	}
 }

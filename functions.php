@@ -41,8 +41,27 @@ if ( ! function_exists( 'wpReact_setup' ) ) {
 	}
 
 }
-
 add_action( 'after_setup_theme', 'wpReact_setup' );
+
+function disable_wp_emojicons() {
+    // all actions related to emojis
+    remove_action( 'admin_print_styles', 'print_emoji_styles' );
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
+    remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+    remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+    remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+    // filter to remove TinyMCE emojis
+    add_filter( 'emoji_svg_url', '__return_false' );
+    // add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
+}
+add_action( 'init', 'disable_wp_emojicons' );
+
+function my_deregister_scripts(){
+  wp_deregister_script( 'wp-embed' );
+}
+add_action( 'wp_footer', 'my_deregister_scripts' );
 
 function get_wp_installation(){
     $full_path = getcwd();
@@ -50,13 +69,21 @@ function get_wp_installation(){
     return $ar[0];
 }
 
-add_action( 'wp_ajax_nopriv_get_page_by_id', 'get_page_by_id' );
-add_action( 'wp_ajax_get_page_by_id', 'get_page_by_id' );
-function get_page_by_id() {
+add_action( 'wp_ajax_nopriv_react_get_page', 'react_get_page' );
+add_action( 'wp_ajax_react_get_page', 'react_get_page' );
+function react_get_page() {
+
     if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 
         $html = '';
         $post_id = $_POST['page_id'];
+
+        if( isset($_POST['uri']) && $_POST['uri'] != 'false' ) {
+            $uri = $_POST['uri'];
+            $page_by_path = get_page_by_path( basename( untrailingslashit( $uri ) ) );
+            $post_id = $page_by_path->ID;
+        }
+
         $page_template = get_post_meta($post_id, '_wp_page_template', true);
 
         if($page_template == 'default'){
@@ -77,16 +104,40 @@ function get_page_by_id() {
         }
 
         $page_array = [
-            'last_page_id' => (int)$post_id,
             $post_id => [
-                'page_id' => $post_id,
+                'page_id' => (int)$post_id,
+                'page_uri' => get_page_uri($post_id),
                 'html' => $html,
                 'server_request_time' => strtotime(date('Y-m-d G:i:s')),
                 'page_template' => $page_template
-            ]
+            ],
+            'last_page_id' => (int)$post_id
         ];
 
         echo json_encode($page_array);
+
+    }
+
+    die();
+
+}
+
+add_action( 'wp_ajax_nopriv_react_get_post_by_path', 'react_get_post_by_path' );
+add_action( 'wp_ajax_react_get_post_by_path', 'react_get_post_by_path' );
+function react_get_post_by_path() {
+
+    if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+
+        if( isset($_POST['uri']) && $_POST['uri'] != 'false' ) {
+            $uri = $_POST['uri'];
+            $page_by_path = get_page_by_path( basename( untrailingslashit( $uri ) ) );
+            $post_id = $page_by_path->ID;
+            $page_by_path->object_id = (string)$post_id;
+            $page_by_path->url = get_page_link($post_id);
+            $page_by_path->menu_item_parent = '0';
+            $page_by_path->not_in_menu = true;
+            echo json_encode($page_by_path);
+        }
 
     }
 

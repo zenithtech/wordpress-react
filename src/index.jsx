@@ -68,7 +68,7 @@ if(document.getElementById('react_page')){
 			_.state = {};
 			_.onChange = _.onChange.bind(_);
 			_.onPageChange = _.onPageChange.bind(_);
-			_.onGetPageByID = _.onGetPageByID.bind(_);
+			_.onGetPage = _.onGetPage.bind(_);
 		}
 		onChange() {
 			let _ = this,
@@ -80,13 +80,16 @@ if(document.getElementById('react_page')){
 		onPageChange() {
 			let _ = this;
 			_.setState({ current_page_id: DataStore.getCurrentPageID() });
-			API.AJAX_getPageByID(DataStore.getCurrentPageID());
+
+			if(DataStore.getCurrentPageID() != null) {
+				API.AJAX_getPage(DataStore.getCurrentPageID(), false);
+			}
 		}
-		onGetPageByID() {
+		onGetPage() {
 			let _ = this,
 				appState = update(_.state, {
 					$merge: {
-						current_page: DataStore.getCachedPage(DataStore.getCurrentPageID())
+						current_page: DataStore.getCachedPage(DataStore.getCurrentPageID(), false)
 					}
 				});
 			_.setState(appState);
@@ -95,13 +98,13 @@ if(document.getElementById('react_page')){
 			let _ = this;
 			DataStore.on('change', _.onChange);
 			DataStore.on('onPageChange', _.onPageChange);
-			DataStore.on('onGetPageByID', _.onGetPageByID);
+			DataStore.on('onGetPage', _.onGetPage);
 		}
 		componentWillUnmount(){
 			let _ = this;
 			DataStore.removeListener('change', _.onChange);
 			DataStore.removeListener('onPageChange', _.onPageChange);
-			DataStore.removeListener('onGetPageByID', _.onGetPageByID);
+			DataStore.removeListener('onGetPage', _.onGetPage);
 		}
 		render() {
 			let _ = this;
@@ -121,5 +124,5 @@ if(document.getElementById('react_page')){
 }
 
 API.get_wp_vars();
-API.set_current_page_id(document.location.origin + document.location.pathname);
+API.set_current_page_id(document.location.origin, document.location.pathname, false);
 API.set_menu_tree(window.app.constants.menu_items);

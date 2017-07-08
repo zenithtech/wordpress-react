@@ -7,7 +7,7 @@ A single-page [Wordpress](https://wordpress.com/) bootstrap theme built with [Re
 - Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
 - Requested pages are cached
 - Uses [react-router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router) and [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
-
+- Ability to access pages not in the menu and maintain routing
 ----
 
 This is <b>work-in-progress.</b> Not recommended for use on a live site. Several Wordpress features are yet to be implemented.
@@ -36,9 +36,14 @@ That's all!
 
 ## Example
 
-production: [https://zenitht.com/wp/](https://zenitht.com/wp/)
+Example of <b>production</b> build (default):
+[https://zenitht.com/wp/](https://zenitht.com/wp/)
 
-dev: [https://zenitht.com/wp/?dev](https://zenitht.com/wp/?dev)
+Example of <b>dev</b> build accessed with `?dev` param:
+[https://zenitht.com/wp/?dev](https://zenitht.com/wp/?dev)
+
+Example of page not in the menu:
+[https://zenitht.com/wp/page-not-in-menu/](https://zenitht.com/wp/page-not-in-menu/)
 
 u: wp / p: wp
 

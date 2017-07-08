@@ -36,15 +36,15 @@ class Menu extends Component {
 
 		if( _.state.menu_items != null && typeof _.props.wp_vars != 'undefined' ) {
 			nodes = _.state.menu_items.map(function(item) {
-					return (
-						<Child key={item.ID}
-							node={item}
-							children={item.children}
-							location = {_.props.location}
-							wp_vars = {_.props.wp_vars}
-						/>
-					);
-				});
+				return (
+					<Child key={item.ID}
+						node={item}
+						children={item.children}
+						location = {_.props.location}
+						wp_vars = {_.props.wp_vars}
+					/>
+				);
+			});
 			blogdescription = _.props.wp_vars.constants.blogdescription;
 		}
 
@@ -76,12 +76,12 @@ class Child extends Component {
 			let { PATHINFO_BASENAME, siteurl } = _.props.wp_vars.constants,
 				toUrl = '/'+PATHINFO_BASENAME+url.replace(siteurl, '');
 			if( _.props.location.pathname == toUrl ){
-				API.set_current_page_id(document.location.origin + document.location.pathname, false);
+				API.set_current_page_id(document.location.origin, document.location.pathname, false);
 				return;
 			}
 		}
 		if( API.getParameter('page_id').toString() == object_id && CurrentPageID != object_id ) {
-			API.set_current_page_id(false, API.getParameter('page_id').toString());
+			API.set_current_page_id(false, false, API.getParameter('page_id').toString());
 			return;
 		}
 	}
@@ -92,7 +92,7 @@ class Child extends Component {
 		let _ = this,
 			{PATHINFO_BASENAME, siteurl, page_on_front} = _.props.wp_vars.constants,
 			item = _.props.node,
-			{ object_id, title, ID, url } = item,
+			{ object_id, title, ID, url, not_in_menu } = item,
 			toUrl = '',
 			childnodes = null,
 			isActive = '',
@@ -156,6 +156,7 @@ class Child extends Component {
 		}
 
 		return (
+			not_in_menu ? false :
 			<li key={ID}
 				id={'menu-item-'+ID.toString()}
 				className = {'page_item page-item-'+object_id.toString() + ' menu-item-' + ID.toString() + isActive + hasChildren}>

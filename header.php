@@ -27,16 +27,12 @@
                         page_on_front: '<?php echo get_option('page_on_front'); ?>',
                         page_for_posts: '<?php echo get_option('page_for_posts'); ?>',
                         template_directory_uri: '<?php echo get_template_directory_uri(); ?>',
-                        menu_items: <?php echo json_encode(wp_get_nav_menu_items('Top Menu')); ?>
+                        menu_items: <?php echo json_encode(wp_get_nav_menu_items('Top Menu')); ?>,
+                        timezone_string: '<?php echo get_option('timezone_string'); ?>',
+                        current_page_id: '<?php echo get_the_ID(); ?>',
+                        isMobile: (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()))
                     };
                     return t;
-                }();
-            }(app || (app = {}));
-            !function(e) {
-                e.obj = function() {
-                    var t = function() {}
-                    return t.var = '',
-                    t
                 }();
             }(app || (app = {}));
         </script>

@@ -9,7 +9,7 @@ class DataStore extends EventEmitter {
 		let _ = this;
 		_.data = {
 			wp_vars: [],
-			current_page_id: '0',
+			current_page_id: null,
 			'menu_tree': [],
 			'pages_cache': []
 		};
@@ -35,10 +35,10 @@ class DataStore extends EventEmitter {
 			switch(action.actionType){
 				case ActionTypes.SET_PAGE_IN_CACHE:
 					Object.assign(_.data.pages_cache, action.id)
-					_.emit('onGetPageByID');
+					_.emit('onGetPage');
 					break;
 				case ActionTypes.GET_PAGE_FROM_CACHE:
-					_.emit('onGetPageByID');
+					_.emit('onGetPage');
 					_.emit('onPageChange');
 					break;
 				default:
@@ -54,12 +54,15 @@ class DataStore extends EventEmitter {
 	getMenuTree(){
 		return this.data.menu_tree;
 	}
-	getCachedPage(id){
+	getCachedPage(id, bool){
 		let _ = this;
 		if(typeof _.data.pages_cache !== 'undefined' && typeof _.data.pages_cache[id] !== 'undefined'){
+			if(bool){
+				return true;
+			}
+			console.log('pages_cache: ', _.data.pages_cache);
 			return _.data.pages_cache[id];
 		} else {
-			console.log('pages_cache: ', _.data.pages_cache);
 			return false;
 		}
 	}
