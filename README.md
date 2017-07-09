@@ -21,8 +21,11 @@ This is <b>work-in-progress.</b> Not recommended for use on a live site. Several
 3. `cd` into this theme folder
 4. Run `npm install`
 5. Build with webpack:
+
     a. `npm run dev` to build the <b>dev</b> version
+
     b. `npm run prod` to build the <b>production</b> version
+
 7. Edit this line in the `.htaccess` file:
 
     `RewriteRule . /index.php [L]`
