@@ -35,6 +35,10 @@
                     return t;
                 }();
             }(app || (app = {}));
+
+            <?php
+            echo file_get_contents(dirname(dirname(dirname(dirname(__FILE__)))).'/wp-includes/js/jquery/jquery.js');
+            ?>
         </script>
 
 
