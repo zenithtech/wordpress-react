@@ -14,6 +14,11 @@ js {
     display: none;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* START #react_header */
 
 #react_header {

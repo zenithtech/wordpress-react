@@ -259,7 +259,7 @@ let API = {
 				window.app.constants.menu_items.push(parsed);
 				_.get_wp_vars();
 				_.set_menu_tree(window.app.constants.menu_items);
-				ServerActions.setCurrentPageID(parsed.ID);
+				ServerActions.setCurrentPageID(parsed.object_id);
 			}
 			if (req.readyState == 4 && req.status == 400) {
 				console.log('error');
