@@ -26,13 +26,19 @@ This is <b>work-in-progress.</b> Not recommended for use on a live site. Several
 
     b. `npm run prod` to build the <b>production</b> version
 
-7. Edit this line in the `.htaccess` file:
+7. Edit your `.htaccess` file as such:
 
-    `RewriteRule . /index.php [L]`
+        # BEGIN WordPress
+        <IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteBase /
+        RewriteRule ^index\.php$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . /index.php [L]
+        </IfModule>
+        # END WordPress
 
-    to
-
-    `RewriteRule . /$1 [P]`
 8. Set your WP <b>Permalinks</b> settings to <b>Post name</b>
 
 
