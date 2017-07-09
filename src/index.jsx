@@ -82,7 +82,7 @@ if(document.getElementById('react_page')){
 			_.setState({ current_page_id: DataStore.getCurrentPageID() });
 
 			if(DataStore.getCurrentPageID() != null) {
-				API.AJAX_getPage(DataStore.getCurrentPageID(), false);
+				API.AJAX_getPage(DataStore.getCurrentPageID(), DataStore.getCurrentPageURL());
 			}
 		}
 		onGetPage() {

@@ -76,12 +76,11 @@ function react_get_page() {
     if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 
         $html = '';
+        $wpFooter = '';
         $post_id = $_POST['page_id'];
 
         if( isset($_POST['uri']) && $_POST['uri'] != 'false' ) {
-            $uri = $_POST['uri'];
-            $page_by_path = get_page_by_path( basename( untrailingslashit( $uri ) ) );
-            $post_id = $page_by_path->ID;
+            $post_id = url_to_postid($_POST['uri']);
         }
 
         $page_template = get_post_meta($post_id, '_wp_page_template', true);
@@ -122,9 +121,9 @@ function react_get_page() {
 
 }
 
-add_action( 'wp_ajax_nopriv_react_get_post_by_path', 'react_get_post_by_path' );
-add_action( 'wp_ajax_react_get_post_by_path', 'react_get_post_by_path' );
-function react_get_post_by_path() {
+add_action( 'wp_ajax_nopriv_react_get_post_not_in_menu', 'react_get_post_not_in_menu' );
+add_action( 'wp_ajax_react_get_post_not_in_menu', 'react_get_post_not_in_menu' );
+function react_get_post_not_in_menu() {
 
     if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 

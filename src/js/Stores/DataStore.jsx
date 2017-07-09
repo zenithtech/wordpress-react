@@ -51,6 +51,16 @@ class DataStore extends EventEmitter {
 	getCurrentPageID(){
 		return this.data.current_page_id;
 	}
+	getCurrentPageURL(){
+		var _ = this,
+			menu_items = _.data.wp_vars.constants.menu_items,
+			findItem = function(item) {
+				return item.object_id == _.data.current_page_id;
+			},
+			currItem = menu_items.find(findItem);
+
+		return currItem.url;
+	}
 	getMenuTree(){
 		return this.data.menu_tree;
 	}

@@ -99,7 +99,7 @@ class Child extends Component {
 			hasChildren = '',
 			urlString = '';
 
-		toUrl = object_id != page_on_front ? '/'+PATHINFO_BASENAME+url.replace(siteurl, '') : '/'+PATHINFO_BASENAME+'/';
+		toUrl = API.stripSiteUrl(url, object_id);
 
 		if( (_.props.location.pathname == toUrl && !API.getParameter('page_id') ) ||
 			API.getParameter('page_id').toString() == object_id ){

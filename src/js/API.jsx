@@ -169,8 +169,7 @@ let API = {
 					ServerActions.setCurrentPageID(currItem.object_id);
 				} else {
 					// if requested page not in menu
-					// _.AJAX_getPage(false, document.location.pathname);
-					_.react_get_post_by_path(window.AjaxSubmit.ajaxSubmitURL, 'react_get_post_by_path', document.location.pathname);
+					_.react_get_post_not_in_menu(window.AjaxSubmit.ajaxSubmitURL, 'react_get_post_not_in_menu', document.location.pathname);
 				}
 
 			}
@@ -223,7 +222,7 @@ let API = {
 		};
 		callInt();
 	},
-	react_get_post_by_path(url, action, uri) {
+	react_get_post_not_in_menu(url, action, uri) {
 		var _ = this,
 			params = "action=" + action + '&uri=' + uri,
 			req = new XMLHttpRequest(),
@@ -244,7 +243,7 @@ let API = {
 				req.send(params);
 			},
 			reqListener = function() {
-				console.log('react_get_post_by_path complete: uri = ' + uri);
+				console.log('react_get_post_not_in_menu complete: uri = ' + uri);
 			};
 
 		req.timeout = 9999999;
@@ -260,7 +259,7 @@ let API = {
 				window.app.constants.menu_items.push(parsed);
 				_.get_wp_vars();
 				_.set_menu_tree(window.app.constants.menu_items);
-				ServerActions.setCurrentPageID(parsed.object_id);
+				ServerActions.setCurrentPageID(parsed.ID);
 			}
 			if (req.readyState == 4 && req.status == 400) {
 				console.log('error');
@@ -274,7 +273,7 @@ let API = {
 			if(DataStore.getCachedPage(id, true)){
 				ServerActions.getPageFromCache(id);
 			} else {
-				_.react_get_page(window.AjaxSubmit.ajaxSubmitURL, 'react_get_page', id, false);
+				_.react_get_page(window.AjaxSubmit.ajaxSubmitURL, 'react_get_page', false, uri);
 			}
 			return;
 		}
@@ -282,6 +281,12 @@ let API = {
 			_.react_get_page(window.AjaxSubmit.ajaxSubmitURL, 'react_get_page', false, uri);
 			return;
 		}
+	},
+	stripSiteUrl(url, object_id){
+		var app = DataStore.getWpVars(),
+			{PATHINFO_BASENAME, siteurl, page_on_front} = app.constants,
+			stripped = object_id.toString() != page_on_front ? '/'+PATHINFO_BASENAME+url.replace(siteurl, '') : '/'+PATHINFO_BASENAME+'/';
+		return stripped;
 	}
 };
 
