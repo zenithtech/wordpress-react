@@ -65,7 +65,7 @@ Example of accessing page via Plain permalink type:
 Example of page with JS alert in content in Text editing mode:
 [https://zenitht.com/wp/level-1/](https://zenitht.com/wp/level-1/)
 
-Example of custom template page, with multiple JS tags, and PHP:
+Example of [custom template](https://github.com/zenithtech/wordpress-react/blob/master/page-CustomPage1.php) page, with multiple JS tags, and PHP:
 [https://zenitht.com/wp/page-using-custom-template/](https://zenitht.com/wp/page-using-custom-template/)
 
 ----
