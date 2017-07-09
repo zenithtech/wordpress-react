@@ -50,6 +50,8 @@
 
     </head>
     <body <?php body_class(); ?>>
+        <!-- START #page -->
         <div id="page" class="clearfix">
             <div id="react_header" class="clearfix"></div>
+            <!-- START #content -->
             <div id="content" class="clearfix">

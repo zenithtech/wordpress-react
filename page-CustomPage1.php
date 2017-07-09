@@ -20,15 +20,15 @@
 	</p>
 
 	<p>
-	The time is: <?php echo date('Y-m-d G:i:s'); ?>
+	Time via PHP within custom template: <?php echo date('Y-m-d G:i:s'); ?>
 	</p>
-
-	<?php echo do_shortcode( '[contact-form-7 id="1736" title="Contact form 1"]' ); ?>
-
 </div>
 
-<js>
-	jQuery('#CustomPage1').css('background-color', '#000');
-	// alert('This is an alert JS run from custom template.');
-	console.log('This is a console log JS run from custom template.');
-</js>
+<script>
+	alert('This is an alert from the custom template page-CustomPage1.php.');
+	jQuery('#CustomPage1').css('background-color', '#2effbc');
+</script>
+
+<script>
+	alert('Multiple script tags. Another alert in another script tag.');
+</script>

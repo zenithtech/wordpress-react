@@ -59,6 +59,12 @@ Example of page not in the menu:
 Example of accessing page via Plain permalink type:
 [https://zenitht.com/wp/?p=35](https://zenitht.com/wp/?p=35)
 
+Example of page with JS alert in content in Text editing mode:
+[https://zenitht.com/wp/level-1/](https://zenitht.com/wp/level-1/)
+
+Example of custom template page, with multiple JS tags, and PHP:
+[https://zenitht.com/wp/page-using-custom-template/](https://zenitht.com/wp/page-using-custom-template/)
+
 ----
 
 ## License ##

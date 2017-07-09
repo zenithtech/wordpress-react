@@ -209,11 +209,17 @@ let API = {
 		req.onreadystatechange = function() {
 			if (req.readyState == 4 && req.status == 200) {
 				var data = parseReq(req),
-					parsed = JSON.parse(data);
+					parsed = JSON.parse(data),
+					html = parsed[parsed.last_page_id].html;
 
-				// extracts <js> tags from custom templates and run them as javascript
 				parsed[parsed.last_page_id].js = [];
-				parsed[parsed.last_page_id].js.push(_.getFromBetween.get(parsed[parsed.last_page_id].html, '<js>' ,'<\/js>'));
+
+				while( html.indexOf('<script>') !== -1 && html.indexOf('<\/script>') !== -1 ){
+					parsed[parsed.last_page_id].js.push(_.getFromBetween.get(html, '<script>' ,'<\/script>'));
+					html = html.replace(/<script>[\s\S]*?<\/script>/, '');
+				}
+
+				parsed[parsed.last_page_id].html = html;
 				ServerActions.setPageInCache(parsed);
 			}
 			if (req.readyState == 4 && req.status == 400) {

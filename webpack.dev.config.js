@@ -66,17 +66,11 @@ module.exports = function(env) {
                 output: 'asset-manifest.json'
             }),
             extractCSS,
-            // new UglifyJsPlugin({
-            //     output: {
-            //         comments: false
-            //     },
-            //     compress: {
-            //         warnings: false
-            //     }
-            // }),
-            // new webpack.DefinePlugin({
-            //     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
-            // })
+            new webpack.DefinePlugin({
+              'process.env': {
+                NODE_ENV: JSON.stringify('development')
+              }
+            })
         ]
     }
 };

@@ -66,16 +66,18 @@ module.exports = function(env) {
                 output: 'asset-manifest.json'
             }),
             extractCSS,
-            new UglifyJsPlugin({
+            new webpack.DefinePlugin({
+              'process.env': {
+                NODE_ENV: JSON.stringify('production')
+              }
+            }),
+            new webpack.optimize.UglifyJsPlugin({
                 output: {
                     comments: false
                 },
                 compress: {
                     warnings: false
                 }
-            }),
-            new webpack.DefinePlugin({
-                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
             })
         ]
     }

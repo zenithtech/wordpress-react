@@ -87,18 +87,35 @@ function react_get_page() {
 
         if($page_template == 'default'){
             ob_start();
-            // global $post;
+            global $post;
             $post = get_post($post_id);
-            // setup_postdata($post);
+            setup_postdata($post);
+
             $content = $post->post_content;
             $content = apply_filters('the_content', $content);
             $html = str_replace(']]>', ']]&gt;', $content);
-            // wp_reset_postdata($post);
+
+            wp_footer();
+            $wpFooter = ob_get_clean();
+
+            wp_reset_postdata($post);
             ob_end_flush();
+
         } else {
             ob_start();
             include $page_template;
             $html = ob_get_clean();
+            ob_end_flush();
+
+            ob_start();
+            global $post;
+            $post = get_post($post_id);
+            setup_postdata($post);
+
+            wp_footer();
+            $wpFooter = ob_get_clean();
+
+            wp_reset_postdata($post);
             ob_end_flush();
         }
 
@@ -107,6 +124,7 @@ function react_get_page() {
                 'page_id' => (int)$post_id,
                 'page_uri' => get_page_uri($post_id),
                 'html' => $html,
+                'wp_footer' => $wpFooter,
                 'server_request_time' => strtotime(date('Y-m-d G:i:s')),
                 'page_template' => $page_template
             ],

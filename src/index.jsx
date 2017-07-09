@@ -12,6 +12,7 @@ import API from './js/API.jsx';
 import DataStore from './js/Stores/DataStore.jsx';
 import Header from './js/Components/Header.jsx';
 import Page from './js/Components/Page.jsx';
+import Footer from './js/Components/Footer.jsx';
 import '../node_modules/font-awesome/less/font-awesome.less';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './css/main.css';
@@ -119,6 +120,48 @@ if(document.getElementById('react_page')){
 			<Route path='/' component={react_page} />
 		</Router>
 		), document.getElementById('react_page')
+	);
+
+}
+
+if(document.getElementById('footer')){
+	class footer extends Component {
+		constructor(props){
+			super(props);
+			let _ = this;
+			_.state = {};
+			_.onGetPage = _.onGetPage.bind(_);
+		}
+		onGetPage() {
+			let _ = this,
+				appState = update(_.state, {
+					$merge: {
+						current_page: DataStore.getCachedPage(DataStore.getCurrentPageID(), false)
+					}
+				});
+			_.setState(appState);
+		}
+		componentWillMount() {
+			let _ = this;
+			DataStore.on('onGetPage', _.onGetPage);
+		}
+		componentWillUnmount(){
+			let _ = this;
+			DataStore.removeListener('onGetPage', _.onGetPage);
+		}
+		render() {
+			let _ = this;
+			return (
+				<Footer {..._.props} {..._.state} />
+			);
+		}
+	}
+
+	ReactDOM.render((
+		<Router history={browserHistory}>
+			<Route path='/' component={footer} />
+		</Router>
+		), document.getElementById('footer')
 	);
 
 }

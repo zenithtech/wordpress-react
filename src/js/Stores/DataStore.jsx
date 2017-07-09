@@ -11,7 +11,8 @@ class DataStore extends EventEmitter {
 			wp_vars: [],
 			current_page_id: null,
 			'menu_tree': [],
-			'pages_cache': []
+			'pages_cache': [],
+			'wp_footer_hooks': ''
 		};
 		AppDispatcher.register(action => {
 			switch(action.actionType){
