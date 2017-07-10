@@ -3,7 +3,7 @@
 			<!-- END #content -->
 
 			<!-- START #footer -->
-			<div id="footer" class="container"></div>
+			<div id="footer" class="container-fluid"></div>
 			<!-- END #footer -->
 
 		</div>

@@ -102,3 +102,14 @@ img {
     color: #0275d8;
 }
 /* END #react_page */
+
+
+/* START #footer */
+
+#footer {
+    background-color: #eee;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* END #footer */

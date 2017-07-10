@@ -61,7 +61,7 @@ class Footer extends Component {
 	render() {
 		let _ = this;
 		return (
-			<div className="clearfix">
+			<div className="container">
 				footer content
 				<WPFooterHooks {..._.props} />
 			</div>

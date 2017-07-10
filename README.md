@@ -9,6 +9,7 @@ A single-page [Wordpress](https://wordpress.com/) bootstrap theme built with [Re
 - Uses [react-router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router) and [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
 - Ability to access pages not in the menu and maintain routing
 - Ability to access pages via any permalink type (See Notes below)
+
 ----
 
 This is <b>work-in-progress.</b> Not recommended for use on a live site. Several Wordpress features are yet to be implemented.
@@ -16,6 +17,7 @@ This is <b>work-in-progress.</b> Not recommended for use on a live site. Several
 ----
 
 ## Installation
+
 1. Download or clone this repository into your Wordpress 'themes' folder
 2. Activate the theme in wp-admin
 3. `cd` into this theme folder

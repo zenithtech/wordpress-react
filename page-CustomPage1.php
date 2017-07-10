@@ -5,8 +5,15 @@
 ?>
 
 <style type="text/css">
-	#CustomPage1 {
-		background-color: #fff7ae;
+	body {
+		background-color: #222;
+		color: #fff;
+	}
+	#react_header {
+		background-color: #0275d8;
+	}
+	#footer {
+		background-color: #0275d8;
 	}
 </style>
 
@@ -26,7 +33,6 @@
 
 <script>
 	alert('This is an alert from the custom template page-CustomPage1.php.');
-	jQuery('#CustomPage1').css('background-color', '#2effbc');
 </script>
 
 <script>
