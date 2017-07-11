@@ -1,4 +1,6 @@
-<?php // function wp_head_hooks() { ?>
+<?php
+// function wp_head_hooks() {
+?>
 <!-- 
     <title><?php echo get_bloginfo(), " &#8211; ", the_title(); ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,9 +15,8 @@
  -->
 <?php
 // }
+// add_action('wp_head', 'wp_head_hooks');
 
-add_action('wp_head', 'wp_head_hooks');
 remove_action( 'wp_head', '_wp_render_title_tag', 1 );
 do_action('wp_head');
-
 ?>
