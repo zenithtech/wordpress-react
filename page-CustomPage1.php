@@ -3,22 +3,10 @@
 * Template Name: CustomPage1
 */
 
-if( !isset($via_ajax) || $via_ajax != true ) {
-	add_action( 'wp_enqueue_scripts', 'ajax_submit_enqueue_scripts' );
-	function ajax_submit_enqueue_scripts() {
-		wp_enqueue_script( 'ajax-submit', get_template_directory_uri().'/js/ajax.js' );
-		wp_localize_script( 'ajax-submit', 'AjaxSubmit', array(
-			'ajaxSubmitURL' => admin_url( 'admin-ajax.php' )
-		));
-	}
+include('inc/page-header.php');
 
-	get_header();
-}
+if( isset($via_ajax) ) {
 ?>
-
-<?php if( !isset($via_ajax) || $via_ajax != true ) { ?>
-<div id="react_page" class="container"></div>
-<?php } else { ?>
 
 <style type="text/css">
 	body {
@@ -54,11 +42,8 @@ if( !isset($via_ajax) || $via_ajax != true ) {
 	alert('Multiple script tags. Another alert in another script tag.');
 </script>
 
-<?php } ?>
-
-
 <?php
-if( !isset($via_ajax) || $via_ajax != true ) {
-	get_footer();
 }
+
+include('inc/page-footer.php');
 ?>
