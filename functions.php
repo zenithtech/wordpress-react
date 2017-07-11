@@ -84,8 +84,46 @@ function react_get_page() {
         }
 
         $page_template = get_post_meta($post_id, '_wp_page_template', true);
+        $post_type = get_post_type($post_id);
 
-        if($page_template == 'default'){
+        if($post_type == 'page'){
+            if($page_template == 'default'){
+                ob_start();
+                global $post;
+                $post = get_post($post_id);
+                setup_postdata($post);
+
+                $content = $post->post_content;
+                $content = apply_filters('the_content', $content);
+                $html = str_replace(']]>', ']]&gt;', $content);
+
+                wp_footer();
+                $wpFooter = ob_get_clean();
+
+                wp_reset_postdata($post);
+                ob_end_flush();
+            } else {
+                ob_start();
+                $via_ajax = true;
+                include $page_template;
+                $html = ob_get_clean();
+                ob_end_flush();
+
+                ob_start();
+                global $post;
+                $post = get_post($post_id);
+                setup_postdata($post);
+
+                wp_footer();
+                $wpFooter = ob_get_clean();
+
+                wp_reset_postdata($post);
+                ob_end_flush();
+            }
+        }
+
+        if($post_type == 'post'){
+
             ob_start();
             global $post;
             $post = get_post($post_id);
@@ -101,23 +139,6 @@ function react_get_page() {
             wp_reset_postdata($post);
             ob_end_flush();
 
-        } else {
-            ob_start();
-            $via_ajax = true;
-            include $page_template;
-            $html = ob_get_clean();
-            ob_end_flush();
-
-            ob_start();
-            global $post;
-            $post = get_post($post_id);
-            setup_postdata($post);
-
-            wp_footer();
-            $wpFooter = ob_get_clean();
-
-            wp_reset_postdata($post);
-            ob_end_flush();
         }
 
         $page_array = [
@@ -127,7 +148,8 @@ function react_get_page() {
                 'html' => $html,
                 'wp_footer' => $wpFooter,
                 'server_request_time' => strtotime(date('Y-m-d G:i:s')),
-                'page_template' => $page_template
+                'page_template' => $page_template,
+                'post_type' => $post_type
             ],
             'last_page_id' => (int)$post_id
         ];

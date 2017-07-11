@@ -21,6 +21,7 @@ img {
 
 /* START #react_header */
 
+#site-navigation {}
 #react_header {
     position: relative;
     z-index: 999;
@@ -42,6 +43,7 @@ img {
 #react_header ul#top-menu li ul.sub-menu > li {
 	display: block;
     position: relative;
+    background-color: #eee;
 }
 #react_header ul#top-menu > li > ul.sub-menu li > ul.sub-menu {
     left: 100%;
@@ -59,7 +61,7 @@ img {
 }
 #react_header ul#top-menu li.menu-item-has-children:hover > ul.sub-menu {
     display: block;
-    width: 100%;
+    width: auto;
 }
 #react_header ul#top-menu li a {
 	color: #0275d8;
@@ -73,6 +75,7 @@ img {
     text-transform: uppercase;
     font-weight: 100;
     font-size: 16px;
+    white-space: nowrap;
 }
 #react_header ul#top-menu li.menu-item-has-children > a:after {
     content: '\f0d7';
