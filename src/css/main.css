@@ -78,7 +78,7 @@ img {
     white-space: nowrap;
 }
 #react_header ul#top-menu li.menu-item-has-children > a:after {
-    content: '\f0d7';
+    content: '▸';
     position: relative;
     font-family: 'FontAwesome';
     margin: 0;
@@ -88,7 +88,7 @@ img {
     display: inline-block;
 }
 #react_header ul#top-menu li.menu-item-has-children:hover > a:after {
-    content: '\f0da';
+    content: '▾';
 }
 #react_header ul#top-menu li.current_page_item > a {
 	color: #fff;

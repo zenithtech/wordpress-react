@@ -13,7 +13,6 @@ import DataStore from './js/Stores/DataStore.jsx';
 import Header from './js/Components/Header.jsx';
 import Page from './js/Components/Page.jsx';
 import Footer from './js/Components/Footer.jsx';
-import '../node_modules/font-awesome/less/font-awesome.less';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './css/main.css';
 

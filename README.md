@@ -2,13 +2,14 @@
 A single-page [Wordpress](https://wordpress.com/) bootstrap theme built with [React](https://facebook.github.io/react/) and [Flux](https://facebook.github.io/flux/), and bundling with [Webpack](https://github.com/webpack/webpack).
 
 ## Features
-- No need to install any Wordpress plugins
+- No requirement to install any Wordpress plugins
 - Separate `dev` and `production` [Webpack](https://github.com/webpack/webpack) builds <i>(accessed with the `?dev` query string)</i>
 - Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
 - Requested pages are cached
 - Uses [react-router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router) and [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
 - Ability to access pages not in the menu and maintain routing
 - Ability to access pages via any permalink type (See Notes below)
+- Dynamic `<head>` tag, `wp_head()` and `wp_footer()` hooks
 
 ----
 
@@ -28,7 +29,9 @@ This is <b>work-in-progress.</b> Not recommended for use on a live site. Several
 
     b. `npm run prod` to build the <b>production</b> version
 
-7. Edit your `.htaccess` file as such:
+7. Set your WP <b>Permalinks</b> settings to <b>Post name</b>
+
+8. Edit your `.htaccess` file as such:
 
         # BEGIN WordPress
         <IfModule mod_rewrite.c>
@@ -41,8 +44,7 @@ This is <b>work-in-progress.</b> Not recommended for use on a live site. Several
         </IfModule>
         # END WordPress
 
-8. Set your WP <b>Permalinks</b> settings to <b>Post name</b>
-
+(Note that switching permalinks in wp-admin after editing `.htaccess` might automatically revert `.htaccess` to default settings.)
 
 That's all!
 

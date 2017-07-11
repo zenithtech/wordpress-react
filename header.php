@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-    <head>
-    </head>
+    <head></head>
     <body <?php body_class(); ?>>
         <script type="text/javascript">
             var app;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
 import update from 'immutability-helper';
 import {
   NavLink
@@ -18,13 +17,22 @@ class Menu extends Component {
         _.evalScripts = _.evalScripts.bind(_);
     }
     evalScripts(){
-        var jq = window.jQuery;
-        jq('head > script').each(function(){
-            eval(jq(this).text());
-        });
-        jq(window).trigger('load');
-        jq(window).trigger('resize');
-        jq(document).trigger('ready');
+        var _ = this,
+            current_page = {},
+            wp_head = '',
+            jq = window.jQuery;
+
+        if(_.props.current_page){
+            current_page = _.props.current_page;
+            wp_head = current_page.wp_head;
+            jq('head').html(wp_head);
+            jq('head > script').each(function(){
+                eval(jq(this).text());
+            });
+            jq(window).trigger('load');
+            jq(window).trigger('resize');
+            jq(document).trigger('ready');
+        }
     }
     onMenuTreeUpdate() {
         let _ = this;
@@ -59,7 +67,8 @@ class Menu extends Component {
             nodes = '',
             wp_vars = '',
             constants = {},
-            current_page = {};
+            current_page = {},
+            wp_head = '';
 
         if( _.state.menu_items != null && typeof _.props.wp_vars != 'undefined' ) {
             wp_vars = _.props.wp_vars;
@@ -79,26 +88,12 @@ class Menu extends Component {
 
         if(_.props.current_page){
             current_page = _.props.current_page;
+            wp_head = current_page.wp_head;
+            // console.log(wp_head);
         }
 
         return (
             <nav id="site-navigation" className="container">
-                <Helmet>
-                    <meta name='robots' content='noindex,follow' />
-                    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <link rel="profile" href="http://gmpg.org/xfn/11" />
-                    <link rel='https://api.w.org/' href={ constants.siteurl + "/wp-json/"} />
-                    <link rel="pingback" href={ constants.pingback_url + "?rsd"} />
-                    <link rel="EditURI" type="application/rsd+xml" title="RSD" href={ constants.pingback_url + "?rsd"} />
-                    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href={ constants.siteurl + "/wp-includes/wlwmanifest.xml"} /> 
-                    <meta name="generator" content={ "WordPress " + constants.version } />
-                    <title>{`${ constants.blogname }`} &#8211; {`${ current_page.the_title }`}</title>
-                    <link rel="shortlink" href={ constants.siteurl + "/?p=" + current_page.page_id } />
-                    <link rel="alternate" type="application/rss+xml" title={ constants.blogname + " &#8211; " + current_page.the_title} href={ constants.siteurl + "/" + current_page.page_uri + "/feed/"} />
-                    <link rel="alternate" type="application/json+oembed" href={ constants.siteurl + "/wp-json/oembed/1.0/embed?url=" + current_page.url } />
-                    <link rel="alternate" type="text/xml+oembed" href={ constants.siteurl + "/wp-json/oembed/1.0/embed?url=" + current_page.url + "&#038;format=xml" } />
-                </Helmet>
                 <p>{blogdescription}</p>
                 <ul id="top-menu" className="menu">
                     {nodes}
