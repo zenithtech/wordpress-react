@@ -187,6 +187,8 @@ function react_get_page() {
             $post_id => [
                 'page_id' => (int)$post_id,
                 'page_uri' => get_page_uri($post_id),
+                'the_title' => get_the_title($post_id),
+                'url' => get_page_link($post_id),
                 'html' => $html,
                 'wp_footer' => $wpFooter,
                 'wp_head' => $wpHead,
@@ -217,9 +219,9 @@ function react_get_post_not_in_menu() {
 
             $args = array(
               'name' => $uri,
+              'numberposts' => 1,
               // 'post_type' => 'post',
-              // 'post_status' => 'publish',
-              'numberposts' => 1
+              // 'post_status' => 'publish'
             );
 
             $my_post = get_posts($args);

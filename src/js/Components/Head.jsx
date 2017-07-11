@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import {
-  NavLink
-} from 'react-router-dom';
-import API from '../API.jsx';
-import DataStore from '../Stores/DataStore.jsx';
 
-class WPFooterHooks extends Component {
+class WPHeadHooks extends Component {
 	constructor(props){
 		super(props);
 		let _ = this;
@@ -15,10 +10,11 @@ class WPFooterHooks extends Component {
 		var jq = window.jQuery;
 		jq('#wp-footer-hooks > script').each(function(){
 			eval(jq(this).text());
+			jq(window).trigger('load');
+			jq(window).trigger('resize');
+			jq(document).trigger('ready');
+			console.log('asd //////////////');
 		});
-		jq(window).trigger('load');
-		jq(window).trigger('resize');
-		jq(document).trigger('ready');
 	}
 	componentDidUpdate(prevProps, prevState) {
 		let _ = this
@@ -39,36 +35,25 @@ class WPFooterHooks extends Component {
 
 		if(typeof _.props.current_page != 'undefined' ){
 			let { current_page } = _.props;
-			var current_page_scripts = '',
-				page_content_scripts = '',
-				wp_footer_scripts = current_page.wp_footer;
-
-			if(current_page.js.length > 0){
-				page_content_scripts = '<script type="text/javascript">' + current_page.js[0].join('') + '<\/script>';
-			}
-
-			current_page_scripts = page_content_scripts + wp_footer_scripts;
+			var wp_head_scripts = current_page.wp_head;
 		}
 
 		return (
-			<div id="wp-footer-hooks" dangerouslySetInnerHTML={{__html: current_page_scripts}}></div>
+			<head id="wp-head-hooks" dangerouslySetInnerHTML={{__html: wp_head_scripts}}></head>
 		);
 	}
 }
 
-class Footer extends Component {
+class Head extends Component {
 	constructor(props){
 		super(props);
 	}
 	render() {
 		let _ = this;
 		return (
-			<div className="container">
-				footer content
-				<WPFooterHooks {..._.props} />
-			</div>
+			<WPHeadHooks {..._.props} />
 		);
 	}
 }
 
-export default Footer;
+export default Head;

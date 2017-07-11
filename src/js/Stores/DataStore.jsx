@@ -69,9 +69,9 @@ class DataStore extends EventEmitter {
 		let _ = this;
 		if(typeof _.data.pages_cache !== 'undefined' && typeof _.data.pages_cache[id] !== 'undefined'){
 			if(bool){
+				console.log('pages_cache: ', _.data.pages_cache);
 				return true;
 			}
-			console.log('pages_cache: ', _.data.pages_cache);
 			return _.data.pages_cache[id];
 		} else {
 			return false;

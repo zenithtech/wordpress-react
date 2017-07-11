@@ -24,6 +24,7 @@ if(document.getElementById('react_header')){
 			let _ = this;
 			_.state = {};
 			_.onChange = _.onChange.bind(_);
+			_.onGetPage = _.onGetPage.bind(_);
 		}
 		onChange() {
 			let _ = this,
@@ -32,13 +33,26 @@ if(document.getElementById('react_header')){
 				});
 			_.setState(appState);
 		}
+		onGetPage() {
+			let _ = this,
+				appState = update(_.state, {
+					$merge: {
+						current_page: DataStore.getCachedPage(DataStore.getCurrentPageID(), false)
+					}
+				});
+			_.setState(appState);
+		}
 		componentWillMount() {
-			let _ = this;
-			DataStore.on('change', _.onChange);
+			let _ = this,
+				ds = DataStore;
+			ds.on('change', _.onChange);
+			ds.on('onGetPage', _.onGetPage);
 		}
 		componentWillUnmount(){
-			let _ = this;
-			DataStore.removeListener('change', _.onChange);
+			let _ = this,
+				ds = DataStore;
+			ds.removeListener('change', _.onChange);
+			ds.removeListener('onGetPage', _.onGetPage);
 		}
 		render() {
 			let _ = this;
