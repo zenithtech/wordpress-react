@@ -103,6 +103,7 @@ function react_get_page() {
 
         } else {
             ob_start();
+            $via_ajax = true;
             include $page_template;
             $html = ob_get_clean();
             ob_end_flush();
