@@ -77,6 +77,7 @@ function react_get_page() {
 
         $html = '';
         $wpFooter = '';
+        $wpHead = '';
 
         if( isset($_POST['page_id']) && $_POST['page_id'] != 'false' ) {
             $post_id = $_POST['page_id'];
@@ -91,47 +92,65 @@ function react_get_page() {
 
         if($post_type == 'page'){
             if($page_template == 'default'){
+
                 ob_start();
                 global $post;
                 $post = get_post($post_id);
                 setup_postdata($post);
+                include_once('inc/wp_head.php');
+                $wpHead = ob_get_clean();
+                wp_reset_postdata($post);
+                if(ob_get_length()){
+                    ob_end_clean();
+                }
 
+                ob_start();
+                $via_ajax = true;
+                global $post;
+                $post = get_post($post_id);
+                setup_postdata($post);
                 $content = $post->post_content;
                 $content = apply_filters('the_content', $content);
                 $html = str_replace(']]>', ']]&gt;', $content);
-
-                wp_footer();
+                do_action('wp_footer');
                 $wpFooter = ob_get_clean();
-
                 wp_reset_postdata($post);
-                $buffer = ob_get_length();
-                if($buffer){
-                    ob_end_flush();
+                if(ob_get_length()){
+                    ob_end_clean();
                 }
+
             } else {
+
+                ob_start();
+                global $post;
+                $post = get_post($post_id);
+                setup_postdata($post);
+                include_once('inc/wp_head.php');
+                $wpHead = ob_get_clean();
+                wp_reset_postdata($post);
+                if(ob_get_length()){
+                    ob_end_clean();
+                }
 
                 ob_start();
                 $via_ajax = true;
                 include $page_template;
                 $html = ob_get_clean();
-                $buffer = ob_get_length();
-                if($buffer){
-                    ob_end_flush();
+                if(ob_get_length()){
+                    ob_end_clean();
                 }
 
                 ob_start();
                 global $post;
                 $post = get_post($post_id);
                 setup_postdata($post);
-
-                wp_footer();
+                do_action('wp_footer');
                 $wpFooter = ob_get_clean();
-
                 wp_reset_postdata($post);
-                $buffer = ob_get_length();
-                if($buffer){
-                    ob_end_flush();
+                if(ob_get_length()){
+                    ob_end_clean();
                 }
+
             }
         }
 
@@ -141,19 +160,27 @@ function react_get_page() {
             global $post;
             $post = get_post($post_id);
             setup_postdata($post);
+            include_once('inc/wp_head.php');
+            $wpHead = ob_get_clean();
+            wp_reset_postdata($post);
+            if(ob_get_length()){
+                ob_end_clean();
+            }
 
+            ob_start();
+            global $post;
+            $post = get_post($post_id);
+            setup_postdata($post);
             $content = $post->post_content;
             $content = apply_filters('the_content', $content);
             $html = str_replace(']]>', ']]&gt;', $content);
-
-            wp_footer();
+            do_action('wp_footer');
             $wpFooter = ob_get_clean();
-
             wp_reset_postdata($post);
-            $buffer = ob_get_length();
-            if($buffer){
-                ob_end_flush();
+            if(ob_get_length()){
+                ob_end_clean();
             }
+
         }
 
         $page_array = [
@@ -162,6 +189,7 @@ function react_get_page() {
                 'page_uri' => get_page_uri($post_id),
                 'html' => $html,
                 'wp_footer' => $wpFooter,
+                'wp_head' => $wpHead,
                 'server_request_time' => strtotime(date('Y-m-d G:i:s')),
                 'page_template' => $page_template,
                 'post_type' => $post_type
