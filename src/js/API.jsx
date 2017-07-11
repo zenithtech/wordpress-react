@@ -169,7 +169,8 @@ let API = {
 					ServerActions.setCurrentPageID(currItem.object_id);
 				} else {
 					// if requested page not in menu
-					_.react_get_post_not_in_menu(window.AjaxSubmit.ajaxSubmitURL, 'react_get_post_not_in_menu', document.location.pathname);
+					var wpVars = DataStore.getWpVars();
+					_.react_get_post_not_in_menu(wpVars.constants.ajaxSubmitURL, 'react_get_post_not_in_menu', document.location.pathname);
 				}
 
 			}
@@ -274,23 +275,24 @@ let API = {
 		callInt();
 	},
 	AJAX_getPage(id, uri){
-		var _ = this;
+		var _ = this,
+			wpVars = DataStore.getWpVars();
 		if (id != false ){
 			if(DataStore.getCachedPage(id, true)){
 				ServerActions.getPageFromCache(id);
 			} else {
-				_.react_get_page(window.AjaxSubmit.ajaxSubmitURL, 'react_get_page', false, uri);
+				_.react_get_page(wpVars.constants.ajaxSubmitURL, 'react_get_page', false, uri);
 			}
 			return;
 		}
 		if (uri != false ){
-			_.react_get_page(window.AjaxSubmit.ajaxSubmitURL, 'react_get_page', false, uri);
+			_.react_get_page(wpVars.constants.ajaxSubmitURL, 'react_get_page', false, uri);
 			return;
 		}
 	},
 	stripSiteUrl(url, object_id){
-		var app = DataStore.getWpVars(),
-			{PATHINFO_BASENAME, siteurl, page_on_front} = app.constants,
+		var getWpVars = DataStore.getWpVars(),
+			{PATHINFO_BASENAME, siteurl, page_on_front} = getWpVars.constants,
 			stripped = object_id.toString() != page_on_front ? '/'+PATHINFO_BASENAME+url.replace(siteurl, '') : '/'+PATHINFO_BASENAME+'/';
 		return stripped;
 	}
