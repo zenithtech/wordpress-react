@@ -169,14 +169,37 @@ function react_get_post_not_in_menu() {
     if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 
         if( isset($_POST['uri']) && $_POST['uri'] != 'false' ) {
-            $uri = $_POST['uri'];
-            $page_by_path = get_page_by_path( basename( untrailingslashit( $uri ) ) );
-            $post_id = $page_by_path->ID;
-            $page_by_path->object_id = (string)$post_id;
-            $page_by_path->url = get_page_link($post_id);
-            $page_by_path->menu_item_parent = '0';
-            $page_by_path->not_in_menu = true;
-            echo json_encode($page_by_path);
+            $uri = basename(untrailingslashit($_POST['uri']));
+
+
+            $args = array(
+              'name' => $uri,
+              // 'post_type' => 'post',
+              // 'post_status' => 'publish',
+              'numberposts' => 1
+            );
+
+            $my_post = get_posts($args);
+
+            if( $my_post ) {
+                $post_id = $my_post[0]->ID;
+
+                $my_post[0]->object_id = (string)$post_id;
+                $my_post[0]->url = get_page_link($post_id);
+                $my_post[0]->menu_item_parent = '0';
+                $my_post[0]->not_in_menu = true;
+                echo json_encode($my_post[0]);
+            } else {
+                $page_by_path = get_page_by_path($uri);
+                $post_id = $page_by_path->ID;
+
+                $page_by_path->object_id = (string)$post_id;
+                $page_by_path->url = get_page_link($post_id);
+                $page_by_path->menu_item_parent = '0';
+                $page_by_path->not_in_menu = true;
+                echo json_encode($page_by_path);
+            }
+
         }
 
     }
