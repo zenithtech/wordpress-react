@@ -29,9 +29,9 @@ This is <b>work-in-progress.</b> Not recommended for use on a live site. Several
 
     b. `npm run prod` to build the <b>production</b> version
 
-7. Set your WP <b>Permalinks</b> settings to <b>Post name</b>
+6. Set your WP <b>Permalinks</b> settings to <b>Post name</b>
 
-8. Edit your `.htaccess` file as such:
+7. Edit your `.htaccess` file as such:
 
         # BEGIN WordPress
         <IfModule mod_rewrite.c>
