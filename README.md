@@ -61,33 +61,59 @@ For internal routing purposes it's recommended above to set Permalinks to Post n
 (Use `username`/`password`: `wp` / `wp` for below links)
 
 Example of <b>production</b> build (default):
+
 [https://zenitht.com/wp/](https://zenitht.com/wp/)
 
 Example of <b>dev</b> build accessed with `dev` param:
+
 [https://zenitht.com/wp/?dev](https://zenitht.com/wp/?dev)
 
-Example of <b>dev</b> build accessed with `dev` and 'p' params, maintaining 'dev' param:
-[https://zenitht.com/wp/about/?p=35&dev](https://zenitht.com/wp/about/?p=35&dev)
-
-Example of <b>dev</b> build accessed with `dev` and 'page_id' params, maintaining 'dev' param:
-[https://zenitht.com/wp/about/?page_id=35&dev](https://zenitht.com/wp/about/?page_id=35&dev)
-
 Example of page not in the menu:
+
 [https://zenitht.com/wp/page-not-in-menu/](https://zenitht.com/wp/page-not-in-menu/)
 
 Example of accessing page via Plain permalink type:
+
 [https://zenitht.com/wp/?p=35](https://zenitht.com/wp/?p=35)
 
 Example of page with JS alert in content in Text editing mode:
+
 [https://zenitht.com/wp/level-1/](https://zenitht.com/wp/level-1/)
 
 Example of [custom template](https://github.com/zenithtech/wordpress-react/blob/master/page-CustomPage1.php) page, with multiple JS tags, and PHP:
+
 [https://zenitht.com/wp/page-using-custom-template/](https://zenitht.com/wp/page-using-custom-template/)
 
+----
+
+## Query param examples
+
+Example of <b>production</b> build accessed with `p&someParam` params, maintaining `someParam` param:
+
+[https://zenitht.com/wp/about/?page_id=35&dev&someParam=123123](https://zenitht.com/wp/about/?page_id=35&dev&someParam=123123)
+
+Example of <b>dev</b> build accessed with `dev&p` params, maintaining `dev` param:
+
+[https://zenitht.com/wp/?p=35&dev](https://zenitht.com/wp/?p=35&dev)
+
+Example of <b>dev</b> build accessed with `dev&page_id` params, maintaining `dev` param:
+
+[https://zenitht.com/wp/?page_id=35&dev](https://zenitht.com/wp/?page_id=35&dev)
+
+Example of <b>dev</b> build accessed with `dev&p&someParam` params, maintaining `dev&someParam` params:
+
+[https://zenitht.com/wp/?page_id=35&dev&someParam=123123](https://zenitht.com/wp/?page_id=35&dev&someParam=123123)
+
+----
+
+## Plugin test examples
+
 Plugin test using BWS Captcha WP plugin:
+
 [https://zenitht.com/wp/bws-captcha-shortcode-plugin-test/](https://zenitht.com/wp/bws-captcha-shortcode-plugin-test/)
 
 Plugin test using ConvertPlug WP plugin:
+
 [https://zenitht.com/wp/wp-plugin-test-convertplug/](https://zenitht.com/wp/wp-plugin-test-convertplug/)
 
 ----
