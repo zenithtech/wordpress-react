@@ -13,7 +13,7 @@ class Page extends Component {
 		let _ = this,
 			blogdescription = '',
 			current_page_id = '',
-			html = '<div class="loading"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span></div>';
+			html = '<div class="loading"></div>';
 
 		if( typeof _.props.current_page != 'undefined' && 
 			typeof _.props.current_page_id != 'undefined' && 
