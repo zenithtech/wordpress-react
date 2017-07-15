@@ -25,13 +25,8 @@ class Menu extends Component {
         if(_.props.current_page){
             current_page = _.props.current_page;
             wp_head = current_page.wp_head;
+            jq('head').html('');
             jq('head').html(wp_head);
-            jq('head > script').each(function(){
-                eval(jq(this).text());
-            });
-            jq(window).trigger('load');
-            jq(window).trigger('resize');
-            jq(document).trigger('ready');
         }
     }
     onMenuTreeUpdate() {
@@ -115,17 +110,13 @@ class Child extends Component {
             { object_id, url } = item,
             CurrentPageID = DataStore.getCurrentPageID();
 
-        if( !API.getParameter('page_id') && CurrentPageID != object_id ){
+        if( CurrentPageID != object_id ){
             let { PATHINFO_BASENAME, siteurl } = _.props.wp_vars.constants,
                 toUrl = '/'+PATHINFO_BASENAME+url.replace(siteurl, '');
             if( _.props.location.pathname == toUrl ){
                 API.set_current_page_id(document.location.origin, document.location.pathname, false);
                 return;
             }
-        }
-        if( API.getParameter('page_id').toString() == object_id && CurrentPageID != object_id ) {
-            API.set_current_page_id(false, false, API.getParameter('page_id').toString());
-            return;
         }
     }
     componentDidUpdate(){
@@ -144,8 +135,7 @@ class Child extends Component {
 
         toUrl = API.stripSiteUrl(url, object_id);
 
-        if( (_.props.location.pathname == toUrl && !API.getParameter('page_id') ) ||
-            API.getParameter('page_id').toString() == object_id ){
+        if( _.props.location.pathname == toUrl ){
             isActive = ' current_page_item';
         }
 

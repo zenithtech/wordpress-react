@@ -155,24 +155,18 @@ let API = {
 		var _ = this;
 
 		if(!id){
-			if(_.getParameter('page_id')){
-				ServerActions.setCurrentPageID(_.getParameter('page_id').toString());
+			var menu_items = window.app.constants.menu_items,
+				findItem = function(item) { 
+					return item.url === origin + pathname;
+				},
+				currItem = menu_items.find(findItem);
+
+			if(typeof currItem != 'undefined'){
+				ServerActions.setCurrentPageID(currItem.object_id);
 			} else {
-
-				var menu_items = window.app.constants.menu_items,
-					findItem = function(item) { 
-						return item.url === origin + pathname;
-					},
-					currItem = menu_items.find(findItem);
-
-				if(typeof currItem != 'undefined'){
-					ServerActions.setCurrentPageID(currItem.object_id);
-				} else {
-					// if requested page not in menu
-					var wpVars = DataStore.getWpVars();
-					_.react_get_post_not_in_menu(wpVars.constants.ajaxSubmitURL, 'react_get_post_not_in_menu', document.location.pathname);
-				}
-
+				// if requested page not in menu
+				var wpVars = DataStore.getWpVars();
+				_.react_get_post_not_in_menu(wpVars.constants.ajaxSubmitURL, 'react_get_post_not_in_menu', document.location.pathname);
 			}
 		} else {
 			ServerActions.setCurrentPageID(id);
@@ -200,6 +194,7 @@ let API = {
 			},
 			reqListener = function() {
 				console.log('AJAX_getPage complete: id = ' + id + ', uri = ' + uri);
+				_.triggerPageLoad();
 			};
 
 		req.timeout = 9999999;
@@ -279,8 +274,10 @@ let API = {
 			wpVars = DataStore.getWpVars();
 		if (id != false ){
 			if(DataStore.getCachedPage(id, true)){
+				DataStore.setIsCachedPage(1);
 				ServerActions.getPageFromCache(id);
 			} else {
+				DataStore.setIsCachedPage(0);
 				_.react_get_page(wpVars.constants.ajaxSubmitURL, 'react_get_page', false, uri);
 			}
 			return;
@@ -295,6 +292,12 @@ let API = {
 			{PATHINFO_BASENAME, siteurl, page_on_front} = getWpVars.constants,
 			stripped = object_id.toString() != page_on_front ? '/'+PATHINFO_BASENAME+url.replace(siteurl, '') : '/'+PATHINFO_BASENAME+'/';
 		return stripped;
+	},
+	triggerPageLoad(){
+		var jq = window.jQuery;
+		jq(window).trigger('load');
+		jq(window).trigger('resize');
+		jq(document).trigger('ready');
 	}
 };
 

@@ -1,17 +1,22 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
+
 a,
 a:active,
 a:focus,
 a:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
 
-js {
-    display: none;
+#wp-footer-hooks {
+    display: block;
+    position: absolute;
+    height: 0;
+    width: 0;
+    overflow: hidden;
 }
 
 img {
@@ -19,13 +24,21 @@ img {
     height: auto;
 }
 
+.btn {
+    cursor: pointer;
+    color: #fff;
+    background-color: #0275d8;
+}
+
 /* START #react_header */
 
 #site-navigation {}
+
 #react_header {
     position: relative;
     z-index: 999;
 }
+
 #react_header ul#top-menu,
 #react_header ul#top-menu ul {
     display: block;
@@ -34,38 +47,46 @@ img {
     padding: 0;
     margin: 0;
 }
+
 #react_header ul#top-menu li ul.sub-menu {
-	display: none;
+    display: none;
     position: absolute;
     left: 0;
     z-index: 1;
 }
-#react_header ul#top-menu li ul.sub-menu > li {
-	display: block;
+
+#react_header ul#top-menu li ul.sub-menu>li {
+    display: block;
     position: relative;
     background-color: #eee;
 }
-#react_header ul#top-menu > li > ul.sub-menu li > ul.sub-menu {
+
+#react_header ul#top-menu>li>ul.sub-menu li>ul.sub-menu {
     left: 100%;
     right: auto;
     top: 0;
     position: absolute;
 }
+
 #react_header ul#top-menu li {
     display: inline-block;
     position: relative;
     vertical-align: top;
 }
-#react_header ul#top-menu li:hover > a {
-	background-color: #e7f4ff;
+
+#react_header ul#top-menu li:hover>a {
+    background-color: #e7f4ff;
 }
-#react_header ul#top-menu li.menu-item-has-children:hover > ul.sub-menu {
+
+#react_header ul#top-menu li.menu-item-has-children:hover>ul.sub-menu {
     display: block;
     width: auto;
 }
+
 #react_header ul#top-menu li a {
-	color: #0275d8;
+    color: #0275d8;
 }
+
 #react_header ul#top-menu li a {
     display: block;
     line-height: 1;
@@ -77,7 +98,8 @@ img {
     font-size: 16px;
     white-space: nowrap;
 }
-#react_header ul#top-menu li.menu-item-has-children > a:after {
+
+#react_header ul#top-menu li.menu-item-has-children>a:after {
     content: '▸';
     position: relative;
     font-family: 'FontAwesome';
@@ -87,18 +109,25 @@ img {
     width: 16px;
     display: inline-block;
 }
-#react_header ul#top-menu li.menu-item-has-children:hover > a:after {
+
+#react_header ul#top-menu li.menu-item-has-children:hover>a:after {
     content: '▾';
 }
-#react_header ul#top-menu li.current_page_item > a {
-	color: #fff;
-	background-color: #0275d8;
+
+#react_header ul#top-menu li.current_page_item>a {
+    color: #fff;
+    background-color: #0275d8;
 }
+
+
 /* END #react_header */
 
+
 /* START #react_page */
-#react_page > article {}
-#react_page > article > .loading {
+
+#react_page>article {}
+
+#react_page>article>.loading {
     margin: 100px auto;
     font-size: 20px;
     width: 1em;
@@ -169,6 +198,7 @@ img {
     }
 }
 
+
 /* END #react_page */
 
 
@@ -179,5 +209,6 @@ img {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
 
 /* END #footer */

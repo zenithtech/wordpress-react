@@ -12,17 +12,20 @@ class WPFooterHooks extends Component {
 		_.evalScripts = _.evalScripts.bind(_);
 	}
 	evalScripts(){
-		var jq = window.jQuery;
-		jq('#wp-footer-hooks > script').each(function(){
-			eval(jq(this).text());
-		});
-		jq(window).trigger('load');
-		jq(window).trigger('resize');
-		jq(document).trigger('ready');
+		var jq = window.jQuery,
+			html = jq('#wp-footer-hooks').html();
+
+		jq('#wp-footer-hooks').html('');
+		jq('#wp-footer-hooks').html(html);
+		if(DataStore.isCachedPage() == 1){
+			API.triggerPageLoad();
+			console.log('DataStore.isCachedPage: 1');
+		} else {
+			console.log('DataStore.isCachedPage: 0');
+		}
 	}
 	componentDidUpdate(prevProps, prevState) {
 		let _ = this
-
 		if( typeof _.props.current_page != 'undefined' ) {
 			if(typeof prevProps.current_page == 'undefined'){
 				_.evalScripts();
@@ -36,7 +39,6 @@ class WPFooterHooks extends Component {
 	}
 	render() {
 		let _ = this;
-
 		if(typeof _.props.current_page != 'undefined' ){
 			let { current_page } = _.props;
 			var current_page_scripts = '',

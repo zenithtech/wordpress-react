@@ -63,8 +63,14 @@ For internal routing purposes it's recommended above to set Permalinks to Post n
 Example of <b>production</b> build (default):
 [https://zenitht.com/wp/](https://zenitht.com/wp/)
 
-Example of <b>dev</b> build accessed with `?dev` param:
+Example of <b>dev</b> build accessed with `dev` param:
 [https://zenitht.com/wp/?dev](https://zenitht.com/wp/?dev)
+
+Example of <b>dev</b> build accessed with `dev` and 'p' params, maintaining 'dev' param:
+[https://zenitht.com/wp/about/?p=35&dev](https://zenitht.com/wp/about/?p=35&dev)
+
+Example of <b>dev</b> build accessed with `dev` and 'page_id' params, maintaining 'dev' param:
+[https://zenitht.com/wp/about/?page_id=35&dev](https://zenitht.com/wp/about/?page_id=35&dev)
 
 Example of page not in the menu:
 [https://zenitht.com/wp/page-not-in-menu/](https://zenitht.com/wp/page-not-in-menu/)
@@ -77,6 +83,12 @@ Example of page with JS alert in content in Text editing mode:
 
 Example of [custom template](https://github.com/zenithtech/wordpress-react/blob/master/page-CustomPage1.php) page, with multiple JS tags, and PHP:
 [https://zenitht.com/wp/page-using-custom-template/](https://zenitht.com/wp/page-using-custom-template/)
+
+Plugin test using BWS Captcha WP plugin:
+[https://zenitht.com/wp/bws-captcha-shortcode-plugin-test/](https://zenitht.com/wp/bws-captcha-shortcode-plugin-test/)
+
+Plugin test using ConvertPlug WP plugin:
+[https://zenitht.com/wp/wp-plugin-test-convertplug/](https://zenitht.com/wp/wp-plugin-test-convertplug/)
 
 ----
 
