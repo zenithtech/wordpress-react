@@ -3,7 +3,8 @@ A single-page [Wordpress](https://wordpress.com/) bootstrap theme built with [Re
 
 ## Features
 - No requirement to install any Wordpress plugins
-- Separate `dev` and `production` [Webpack](https://github.com/webpack/webpack) builds <i>(accessed with the `?dev` query string)</i>
+- Separate `dev` and `production` [Webpack](https://github.com/webpack/webpack) builds <i>(accessed with the `?dev` URL query param)</i>
+- Maintain non-WP URL query params thoughout the app
 - Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
 - Requested pages are cached
 - Uses [react-router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router) and [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
