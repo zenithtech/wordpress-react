@@ -82,7 +82,7 @@ Example of page with JS alert in content in Text editing mode:
 
 [https://zenitht.com/wp/level-1/](https://zenitht.com/wp/level-1/)
 
-Example of [custom template](https://github.com/zenithtech/wordpress-react/blob/master/page-CustomPage1.php) page, with multiple JS tags, and PHP:
+Example of [custom template](page-CustomPage1.php) page, with multiple JS tags, and PHP:
 
 [https://zenitht.com/wp/page-using-custom-template/](https://zenitht.com/wp/page-using-custom-template/)
 
@@ -122,4 +122,4 @@ Plugin test using ConvertPlug WP plugin:
 
 ## License ##
 
-This package is licensed under MIT license. See [LICENSE](wordpress-react/LICENSE) for details.
+This package is licensed under MIT license. See [LICENSE](LICENSE) for details.
