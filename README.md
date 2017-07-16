@@ -122,4 +122,4 @@ Plugin test using ConvertPlug WP plugin:
 
 ## License ##
 
-This package is licensed under MIT license. See [LICENSE](https://github.com/zenithtech/wordpress-react/blob/master/LICENSE) for details.
+This package is licensed under MIT license. See [LICENSE](wordpress-react/LICENSE) for details.
