@@ -1,16 +1,17 @@
 # wordpress-react
-A single-page [Wordpress](https://wordpress.com/) bootstrap theme built with [React](https://facebook.github.io/react/) and [Flux](https://facebook.github.io/flux/), and bundling with [Webpack](https://github.com/webpack/webpack).
+A single-page [Wordpress](https://wordpress.com/) bootstrapped theme built with [React](https://facebook.github.io/react/) and [Flux](https://facebook.github.io/flux/), routing with [react-router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router), and bundling with [Webpack](https://github.com/webpack/webpack).
 
 ## Features
 - No requirement to install any Wordpress plugins
-- Separate `dev` and `production` [Webpack](https://github.com/webpack/webpack) builds <i>(accessed with the `?dev` URL query param)</i>
-- Maintain non-WP URL query params thoughout the app
+- Separate `dev` and `production` builds <i>(accessed with the `?dev` URL query param)</i> (See [Examples](#examples) below)
+- Maintain non-WP URL query params thoughout the app (See [Query param examples](#query-param-examples) below)
 - Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
 - Requested pages are cached
-- Uses [react-router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router) and [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
+- Ability to differ cached pages from non-cached
 - Ability to access pages not in the menu and maintain routing
-- Ability to access pages via any permalink type (See Notes below)
+- Ability to access pages via any permalink type (See [Notes](#notes) below)
 - Dynamic `<head>` tag, `wp_head()` and `wp_footer()` hooks
+- Ability install and use WP plugins regularly (See [Plugin test examples](#plugin-test-examples) below)
 
 ----
 
@@ -89,7 +90,7 @@ Example of [custom template](https://github.com/zenithtech/wordpress-react/blob/
 
 ## Query param examples
 
-Example of <b>production</b> build accessed with `p&someParam` params, maintaining `someParam` param:
+Example of <b>production</b> build accessed with `page_id&someParam` params, maintaining `someParam` param:
 
 [https://zenitht.com/wp/?page_id=35&someParam=123123](https://zenitht.com/wp/?page_id=35&someParam=123123)
 
@@ -101,7 +102,7 @@ Example of <b>dev</b> build accessed with `dev&page_id` params, maintaining `dev
 
 [https://zenitht.com/wp/?page_id=35&dev](https://zenitht.com/wp/?page_id=35&dev)
 
-Example of <b>dev</b> build accessed with `dev&p&someParam` params, maintaining `dev&someParam` params:
+Example of <b>dev</b> build accessed with `page_id&dev&p&someParam` params, maintaining `dev&someParam` params:
 
 [https://zenitht.com/wp/?page_id=35&dev&someParam=123123](https://zenitht.com/wp/?page_id=35&dev&someParam=123123)
 
@@ -121,4 +122,4 @@ Plugin test using ConvertPlug WP plugin:
 
 ## License ##
 
-This package is licensed under MIT license. See LICENSE for details.
+This package is licensed under MIT license. See [LICENSE](https://github.com/zenithtech/wordpress-react/blob/master/LICENSE) for details.
