@@ -33,21 +33,6 @@ This is <b>work-in-progress.</b> Not recommended for use on a live site. Several
 
 6. Set your WP <b>Permalinks</b> settings to <b>Post name</b>
 
-7. Edit your `.htaccess` file as such:
-
-        # BEGIN WordPress
-        <IfModule mod_rewrite.c>
-        RewriteEngine On
-        RewriteBase /
-        RewriteRule ^index\.php$ - [L]
-        RewriteCond %{REQUEST_FILENAME} !-f
-        RewriteCond %{REQUEST_FILENAME} !-d
-        RewriteRule . /index.php [L]
-        </IfModule>
-        # END WordPress
-
-(Note that switching permalinks in wp-admin after editing `.htaccess` might automatically revert `.htaccess` to default settings.)
-
 That's all!
 
 ----
@@ -86,9 +71,7 @@ Example of [custom template](page-CustomPage1.php) page, with multiple JS tags, 
 
 [https://zenitht.com/wp/page-using-custom-template/](https://zenitht.com/wp/page-using-custom-template/)
 
-----
-
-## Query param examples
+<b>Query param examples</b>
 
 Example of <b>production</b> build accessed with `page_id&someParam` params, maintaining `someParam` param:
 
@@ -106,9 +89,7 @@ Example of <b>dev</b> build accessed with `page_id&dev&p&someParam` params, main
 
 [https://zenitht.com/wp/?page_id=35&dev&someParam=123123](https://zenitht.com/wp/?page_id=35&dev&someParam=123123)
 
-----
-
-## Plugin test examples
+<b>Plugin test examples</b>
 
 Plugin test using BWS Captcha WP plugin:
 
@@ -117,6 +98,10 @@ Plugin test using BWS Captcha WP plugin:
 Plugin test using ConvertPlug WP plugin:
 
 [https://zenitht.com/wp/wp-plugin-test-convertplug/](https://zenitht.com/wp/wp-plugin-test-convertplug/)
+
+Plugin test using Ninja Forms WP plugin:
+
+[https://zenitht.com/wp/plugin-test-ninja-forms/](https://zenitht.com/wp/plugin-test-ninja-forms/)
 
 ----
 

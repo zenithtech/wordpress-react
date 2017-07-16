@@ -39,7 +39,7 @@ class WPFooterHooks extends Component {
 	}
 	render() {
 		let _ = this;
-		if(typeof _.props.current_page != 'undefined' ){
+		if( _.props.current_page != false && typeof _.props.current_page != 'undefined'){
 			let { current_page } = _.props;
 			var current_page_scripts = '',
 				page_content_scripts = '',
