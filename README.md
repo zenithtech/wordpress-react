@@ -91,7 +91,7 @@ Example of [custom template](https://github.com/zenithtech/wordpress-react/blob/
 
 Example of <b>production</b> build accessed with `p&someParam` params, maintaining `someParam` param:
 
-[https://zenitht.com/wp/?page_id=35&dev&someParam=123123](https://zenitht.com/wp/?page_id=35&dev&someParam=123123)
+[https://zenitht.com/wp/?page_id=35&someParam=123123](https://zenitht.com/wp/?page_id=35&someParam=123123)
 
 Example of <b>dev</b> build accessed with `dev&p` params, maintaining `dev` param:
 
