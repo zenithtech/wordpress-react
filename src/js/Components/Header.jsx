@@ -23,6 +23,7 @@ class Menu extends Component {
             jq = window.jQuery;
 
         if(_.props.current_page){
+            API.windowGarbageCollection();
             current_page = _.props.current_page;
             wp_head = current_page.wp_head;
             jq('head').html(wp_head);

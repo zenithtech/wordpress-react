@@ -332,21 +332,24 @@ let API = {
             stripped = object_id.toString() != page_on_front ? '/'+PATHINFO_BASENAME+url.replace(siteurl, '') : '/'+PATHINFO_BASENAME+'/';
         return stripped;
     },
-    triggerPageLoad(){
+    windowGarbageCollection(){
+        var removeObjects = Object
+            .keys(window)
+            .map( (currentValue, index, array) => {
+                if(!window.window_cache[currentValue]){
+                    if(currentValue != 'window_cache'){
+                        window[currentValue] = false;
+                    }
+                }
+            });
+
+    },
+    triggerPageLoad(bool){
         var _ = this,
             jq = window.jQuery,
             react_page_js = [{}],
             appendScripts = null,
-            mappedParams = null,
-            removeObjects = Object
-                .keys(window)
-                .map( (currentValue, index, array) => {
-                    if(!window.window_cache[currentValue]){
-                        if(currentValue != 'window_cache'){
-                            window[currentValue] = false;
-                        }
-                    }
-                });
+            mappedParams = null;
 
         jq('#react_page script').each(function(){
             react_page_js.push(this);

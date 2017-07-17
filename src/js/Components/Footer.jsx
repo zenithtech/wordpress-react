@@ -14,6 +14,7 @@ class WPFooterHooks extends Component {
 
 		jq('#wp-footer-hooks').html('');
 		jq('#wp-footer-hooks').append(html);
+
 		if(DataStore.isCachedPage() == 1){
 			API.triggerPageLoad();
 			console.log('DataStore.isCachedPage: 1');
