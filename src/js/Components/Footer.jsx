@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import {
-  NavLink
-} from 'react-router-dom';
 import API from '../API.jsx';
 import DataStore from '../Stores/DataStore.jsx';
 
@@ -16,7 +13,7 @@ class WPFooterHooks extends Component {
 			html = jq('#wp-footer-hooks').html();
 
 		jq('#wp-footer-hooks').html('');
-		jq('#wp-footer-hooks').html(html);
+		jq('#wp-footer-hooks').append(html);
 		if(DataStore.isCachedPage() == 1){
 			API.triggerPageLoad();
 			console.log('DataStore.isCachedPage: 1');
@@ -28,7 +25,7 @@ class WPFooterHooks extends Component {
 		let _ = this
 		if( typeof _.props.current_page != 'undefined' ) {
 			if(typeof prevProps.current_page == 'undefined'){
-				_.evalScripts();
+				_.evalScripts()
 				return;
 			}
 			if(typeof prevProps.current_page.page_id != 'undefined' && prevProps.current_page.page_id != _.props.current_page.page_id){

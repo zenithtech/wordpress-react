@@ -47,14 +47,21 @@ class DataStore extends EventEmitter {
 			}
 		});
 	}
+	getData(val){
+		return this.data[val];
+	}
 	isCachedPage(){
 		return this.data.isCachedPage;
 	}
 	setIsCachedPage(val){
 		return this.data.isCachedPage = val;
 	}
-	getWpVars(){
-		return this.data.wp_vars;
+	getWpVars(val){
+		var _ = this;
+		if(val){
+			return _.data.wp_vars.constants[val];
+		}
+		return _.data.wp_vars;
 	}
 	getCurrentPageID(){
 		return this.data.current_page_id;

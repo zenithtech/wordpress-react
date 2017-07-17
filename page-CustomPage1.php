@@ -21,7 +21,7 @@ if( isset($via_ajax) ) {
 	}
 </style>
 
-<div id="react_page" class="container">
+<div class="container">
 	<p>
 	Custom template <b>page-CustomPage1.php</b>
 	</p>

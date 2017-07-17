@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import update from 'immutability-helper';
 import {
-  BrowserRouter as Router,
-  Route,
-  browserHistory,
-  IndexRedirect,
-  IndexRoute
+	BrowserRouter as Router,
+	Route,
+	browserHistory,
+	IndexRedirect,
+	IndexRoute
 } from 'react-router-dom';
 import API from './js/API.jsx';
 import DataStore from './js/Stores/DataStore.jsx';
@@ -15,6 +15,8 @@ import Page from './js/Components/Page.jsx';
 import Footer from './js/Components/Footer.jsx';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './css/main.css';
+
+window.window_cache = API.clone(window);
 
 if(document.getElementById('react_header')){
 	class react_header extends Component {

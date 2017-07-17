@@ -25,7 +25,6 @@ class Menu extends Component {
         if(_.props.current_page){
             current_page = _.props.current_page;
             wp_head = current_page.wp_head;
-            jq('head').html('');
             jq('head').html(wp_head);
         }
     }
@@ -84,7 +83,6 @@ class Menu extends Component {
         if(_.props.current_page){
             current_page = _.props.current_page;
             wp_head = current_page.wp_head;
-            // console.log(wp_head);
         }
 
         return (

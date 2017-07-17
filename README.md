@@ -71,6 +71,11 @@ Example of [custom template](page-CustomPage1.php) page, with multiple JS tags, 
 
 [https://zenitht.com/wp/page-using-custom-template/](https://zenitht.com/wp/page-using-custom-template/)
 
+Example of [wordpress-zSlider](https://github.com/zenithtech/wordpress-zSlider) within custom template <i>(not included in this repo)</i>:
+
+[https://zenitht.com/wp/wordpress-zslider-test/](https://zenitht.com/wp/wordpress-zslider-test/)
+
+
 <b>Query param examples</b>
 
 Example of <b>production</b> build accessed with `page_id&someParam` params, maintaining `someParam` param:
@@ -88,6 +93,7 @@ Example of <b>dev</b> build accessed with `dev&page_id` params, maintaining `dev
 Example of <b>dev</b> build accessed with `page_id&dev&p&someParam` params, maintaining `dev&someParam` params:
 
 [https://zenitht.com/wp/?page_id=35&dev&someParam=123123](https://zenitht.com/wp/?page_id=35&dev&someParam=123123)
+
 
 <b>Plugin test examples</b>
 

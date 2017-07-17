@@ -252,3 +252,14 @@ function react_get_post_not_in_menu() {
     die();
 
 }
+
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page(array(
+        'page_title'    => 'zSlider Settings',
+        'menu_title'    => 'zSlider',
+        'menu_slug'     => 'zslider-slider',
+        'capability'    => 'edit_posts',
+        'redirect'  => false,
+        'icon_url'  => 'dashicons-slides'
+    ));
+}
