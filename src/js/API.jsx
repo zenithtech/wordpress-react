@@ -335,16 +335,16 @@ let API = {
     windowGarbageCollection(){
         var removeObjects = Object
             .keys(window)
-            .map( (currentValue, index, array) => {
+            .map( (currentValue) => {
                 if(!window.window_cache[currentValue]){
-                    if(currentValue != 'window_cache'){
+                    if(currentValue != 'window_cache' && currentValue != '0'){
                         window[currentValue] = false;
                     }
                 }
             });
 
     },
-    triggerPageLoad(bool){
+    triggerPageLoad(){
         var _ = this,
             jq = window.jQuery,
             react_page_js = [{}],
@@ -358,10 +358,10 @@ let API = {
 
         appendScripts = Object
             .keys(react_page_js)
-            .map( (currentValue, index, array) => {
+            .map( (currentValue, index) => {
                 return react_page_js[index];
             })
-            .map( (currentValue, index, array) => {
+            .map( (currentValue) => {
                 if(typeof currentValue.outerHTML != 'undefined') {
                     jq('head').append(currentValue);
                 }
