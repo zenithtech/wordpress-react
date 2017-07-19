@@ -2,11 +2,13 @@
 A single-page [Wordpress](https://wordpress.com/) bootstrapped theme built with [React](https://facebook.github.io/react/) and [Flux](https://facebook.github.io/flux/), routing with [react-router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router), and bundling with [Webpack](https://github.com/webpack/webpack).
 
 ## Features
-- No requirement to install any Wordpress plugins
+- No requirement to install any Wordpress plugins, works out of the box
+- No requirement for special `.htaccess` settings
+- Menus built on the client-side from flat trees
 - Separate `dev` and `production` builds <i>(accessed with the `?dev` URL query param)</i> (See [Examples](#examples) below)
-- Maintain non-WP URL query params thoughout the app (See [Query param examples](#query-param-examples) below)
+- Maintains non-WP URL query params thoughout the app (See [Query param examples](#query-param-examples) below)
 - Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
-- Requested pages are cached
+- Requested pages are cached and not requested again
 - Ability to differ cached pages from non-cached
 - Ability to access pages not in the menu and maintain routing
 - Ability to access pages via any permalink type (See [Notes](#notes) below)
@@ -71,10 +73,6 @@ Example of [custom template](page-CustomPage1.php) page, with multiple JS tags, 
 
 [https://zenitht.com/wp/page-using-custom-template/](https://zenitht.com/wp/page-using-custom-template/)
 
-Example of [wordpress-zSlider](https://github.com/zenithtech/wordpress-zSlider) within custom template <i>(not included in this repo)</i>:
-
-[https://zenitht.com/wp/wordpress-zslider-test/](https://zenitht.com/wp/wordpress-zslider-test/)
-
 
 <b>Query param examples</b>
 
@@ -97,6 +95,10 @@ Example of <b>dev</b> build accessed with `page_id&dev&p&someParam` params, main
 
 <b>Plugin test examples</b>
 
+Example of [wordpress-zSlider](https://github.com/zenithtech/wordpress-zSlider) within custom template:
+
+[https://zenitht.com/wp/wordpress-zslider-test/](https://zenitht.com/wp/wordpress-zslider-test/)
+
 Plugin test using BWS Captcha WP plugin:
 
 [https://zenitht.com/wp/bws-captcha-shortcode-plugin-test/](https://zenitht.com/wp/bws-captcha-shortcode-plugin-test/)
@@ -108,6 +110,7 @@ Plugin test using ConvertPlug WP plugin:
 Plugin test using Ninja Forms WP plugin:
 
 [https://zenitht.com/wp/plugin-test-ninja-forms/](https://zenitht.com/wp/plugin-test-ninja-forms/)
+
 
 ----
 
