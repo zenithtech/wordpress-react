@@ -16,8 +16,6 @@ import Footer from './js/Components/Footer.jsx';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './css/main.css';
 
-window.window_cache = API.clone(window);
-
 if(document.getElementById('react_header')){
 	class react_header extends Component {
 		constructor(props){
@@ -184,3 +182,4 @@ if(document.getElementById('footer')){
 API.get_wp_vars();
 API.set_current_page_id(document.location.origin, document.location.pathname, false);
 API.set_menu_tree(window.app.constants.menu_items);
+window.window_cache = API.clone(window);

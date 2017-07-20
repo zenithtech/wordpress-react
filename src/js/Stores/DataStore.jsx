@@ -74,7 +74,12 @@ class DataStore extends EventEmitter {
 			},
 			currItem = menu_items.find(findItem);
 
-		return currItem.url;
+		if(typeof currItem == 'undefined'){
+			return false;
+		} else {
+			return currItem.url;
+		}
+
 	}
 	getMenuTree(){
 		return this.data.menu_tree;

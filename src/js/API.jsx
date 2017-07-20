@@ -194,18 +194,23 @@ let API = {
         var _ = this;
 
         if(!id){
-            var menu_items = window.app.constants.menu_items,
-                findItem = function(item) { 
-                    return item.url === origin + pathname;
-                },
-                currItem = menu_items.find(findItem);
-
-            if(typeof currItem != 'undefined'){
-                ServerActions.setCurrentPageID(currItem.object_id);
+            if(_.getParameter('page_id')){
+                ServerActions.setCurrentPageID(_.getParameter('page_id').toString());
             } else {
-                // if requested page not in menu
-                var wpVars = DataStore.getWpVars();
-                _.react_get_post_not_in_menu(wpVars.constants.ajaxSubmitURL, 'react_get_post_not_in_menu', document.location.pathname);
+
+                var menu_items = window.app.constants.menu_items,
+                    findItem = function(item) { 
+                        return item.url === origin + pathname;
+                    },
+                    currItem = menu_items.find(findItem);
+
+                if(typeof currItem != 'undefined'){
+                    ServerActions.setCurrentPageID(currItem.object_id);
+                } else {
+                    // if requested page not in menu
+                    var wpVars = DataStore.getWpVars();
+                    _.react_get_post_not_in_menu(wpVars.constants.ajaxSubmitURL, 'react_get_post_not_in_menu', document.location.pathname);
+                }
             }
         } else {
             ServerActions.setCurrentPageID(id);
@@ -317,13 +322,16 @@ let API = {
                 ServerActions.getPageFromCache(id);
             } else {
                 DataStore.setIsCachedPage(0);
-                _.react_get_page(wpVars.constants.ajaxSubmitURL, 'react_get_page', false, uri);
+                if (uri != false ){
+                    _.react_get_page(wpVars.constants.ajaxSubmitURL, 'react_get_page', false, uri);
+                    return;
+                } else {
+                    // in case post_status is not 'publish', and item is not in menu
+                    // eg. accessed from 'Preview' link, or with 'p' or 'page_id' params
+                    _.react_get_page(wpVars.constants.ajaxSubmitURL, 'react_get_page', id, false);
+                    return;
+                }
             }
-            return;
-        }
-        if (uri != false ){
-            _.react_get_page(wpVars.constants.ajaxSubmitURL, 'react_get_page', false, uri);
-            return;
         }
     },
     stripSiteUrl(url, object_id){
