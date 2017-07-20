@@ -376,8 +376,8 @@ let API = {
             });
 
         jq(document).trigger('ready');
-        jq(window).trigger('resize');
         jq(window).trigger('load');
+        jq(window).trigger('resize');
     }
 };
 

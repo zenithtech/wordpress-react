@@ -73,6 +73,10 @@ Example of [custom template](page-CustomPage1.php) page, with multiple JS tags, 
 
 [https://zenitht.com/wp/page-using-custom-template/](https://zenitht.com/wp/page-using-custom-template/)
 
+Example of page with status set as 'Draft'
+
+[https://zenitht.com/wp/?page_id=1859](https://zenitht.com/wp/?page_id=1859)
+
 
 <b>Query param examples</b>
 

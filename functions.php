@@ -43,6 +43,21 @@ if ( ! function_exists( 'wpReact_setup' ) ) {
 }
 add_action( 'after_setup_theme', 'wpReact_setup' );
 
+function override_draft_post_type( $query ) {
+    $query->set( 'post_status', array( 'publish', 'draft' ) );
+}
+add_action( 'pre_get_posts', 'override_draft_post_type' );
+
+function override_draft_post_type_single( $posts, $wp_query ) {
+    if ( count( $posts ) )
+        return $posts;
+
+    if ( !empty( $wp_query->query['p'] ) ) {
+        return array ( get_post( $wp_query->query['p'] ) );
+    }
+}
+add_filter( 'the_posts', 'override_draft_post_type_single', 10, 2 );
+
 function disable_wp_emojicons() {
     // all actions related to emojis
     remove_action( 'admin_print_styles', 'print_emoji_styles' );
@@ -87,8 +102,10 @@ function react_get_page() {
             $post_id = url_to_postid($_POST['uri']);
         }
 
+        $post_status = get_post_status( $post_id );
         $page_template = get_post_meta($post_id, '_wp_page_template', true);
         $post_type = get_post_type($post_id);
+
 
         if($post_type == 'page'){
             if($page_template == 'default'){
@@ -183,21 +200,43 @@ function react_get_page() {
 
         }
 
-        $page_array = [
-            $post_id => [
-                'page_id' => (int)$post_id,
-                'page_uri' => get_page_uri($post_id),
-                'the_title' => get_the_title($post_id),
-                'url' => get_page_link($post_id),
-                'html' => $html,
-                'wp_footer' => $wpFooter,
-                'wp_head' => $wpHead,
-                'server_request_time' => strtotime(date('Y-m-d G:i:s')),
-                'page_template' => $page_template,
-                'post_type' => $post_type
-            ],
-            'last_page_id' => (int)$post_id
-        ];
+        if( $post_status == 'draft' && !is_user_logged_in() ){
+
+            $page_array = [
+                $post_id => [
+                    'page_id' => (int)$post_id,
+                    'page_uri' => get_page_uri($post_id),
+                    'the_title' => get_the_title($post_id),
+                    'url' => get_page_link($post_id),
+                    'html' => '<p><br />This page is not yet published.<br /></p>',
+                    'wp_footer' => $wpFooter,
+                    'wp_head' => $wpHead,
+                    'server_request_time' => strtotime(date('Y-m-d G:i:s')),
+                    'page_template' => $page_template,
+                    'post_type' => $post_type
+                ],
+                'last_page_id' => (int)$post_id
+            ];
+
+        } else {
+
+            $page_array = [
+                $post_id => [
+                    'page_id' => (int)$post_id,
+                    'page_uri' => get_page_uri($post_id),
+                    'the_title' => get_the_title($post_id),
+                    'url' => get_page_link($post_id),
+                    'html' => $html,
+                    'wp_footer' => $wpFooter,
+                    'wp_head' => $wpHead,
+                    'server_request_time' => strtotime(date('Y-m-d G:i:s')),
+                    'page_template' => $page_template,
+                    'post_type' => $post_type
+                ],
+                'last_page_id' => (int)$post_id
+            ];
+
+        }
 
         echo json_encode($page_array);
 
@@ -263,3 +302,4 @@ if( function_exists('acf_add_options_page') ) {
         'icon_url'  => 'dashicons-slides'
     ));
 }
+

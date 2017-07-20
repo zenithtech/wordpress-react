@@ -117,7 +117,9 @@ class Child extends Component {
                 return;
             }
         }
-        if( API.getParameter('page_id').toString() == object_id && CurrentPageID != object_id ) {
+        if( ( API.getParameter('page_id') && API.getParameter('page_id').toString() == object_id && CurrentPageID != object_id ) || 
+            ( API.getParameter('page_id') && API.getParameter('page_id').toString() != object_id && CurrentPageID == object_id )
+            ) {
             API.set_current_page_id(false, false, API.getParameter('page_id'));
             return;
         }
