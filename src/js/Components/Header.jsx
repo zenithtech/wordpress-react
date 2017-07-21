@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import update from 'immutability-helper';
 import {
   NavLink
 } from 'react-router-dom';
@@ -24,13 +23,12 @@ class Menu extends Component {
 
         if(_.props.current_page){
             API.windowGarbageCollection();
-            current_page = _.props.current_page;
-            wp_head = current_page.wp_head;
-            jq('head').html(wp_head);
+            jq('head').html(_.props.current_page.wp_head);
         }
     }
     onMenuTreeUpdate() {
         let _ = this;
+
         console.log('4. In View > react_page > onMenuTreeUpdate');
         _.setState({ menu_items: DataStore.getMenuTree() });
     }
@@ -117,6 +115,7 @@ class Child extends Component {
                 return;
             }
         }
+
         if( ( API.getParameter('page_id') && API.getParameter('page_id').toString() == object_id && CurrentPageID != object_id ) || 
             ( API.getParameter('page_id') && API.getParameter('page_id').toString() != object_id && CurrentPageID == object_id )
             ) {
@@ -129,9 +128,7 @@ class Child extends Component {
     }
     render() {
         let _ = this,
-            {PATHINFO_BASENAME, siteurl, page_on_front} = _.props.wp_vars.constants,
-            item = _.props.node,
-            { object_id, title, ID, url, not_in_menu } = item,
+            { object_id, title, ID, url, not_in_menu } = _.props.node,
             toUrl = API.stripSiteUrl(url, object_id),
             childnodes = null,
             isActive = '',
@@ -180,8 +177,6 @@ class Child extends Component {
                             if( index+1 != array.length ){
                                 urlString += '&';
                             }
-
-                            return;
                         }
 
                     });
@@ -189,7 +184,6 @@ class Child extends Component {
 
             // Plain permalinks
             if( (_.props.location.search != '' && toUrl.match(/\?./)) ){
-
                 if( toUrl.match(/page_id/) ){
                     toUrl += '&' + urlString;
                 } else {

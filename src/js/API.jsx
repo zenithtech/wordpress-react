@@ -315,13 +315,14 @@ let API = {
     },
     AJAX_getPage(id, uri){
         var _ = this,
-            wpVars = DataStore.getWpVars();
+            ds = DataStore,
+            wpVars = ds.getWpVars();
         if (id != false ){
-            if(DataStore.getCachedPage(id, true)){
-                DataStore.setIsCachedPage(1);
+            if(ds.getCachedPage(id, true)){
+                ds.setIsCachedPage(1);
                 ServerActions.getPageFromCache(id);
             } else {
-                DataStore.setIsCachedPage(0);
+                ds.setIsCachedPage(0);
                 if (uri != false ){
                     _.react_get_page(wpVars.constants.ajaxSubmitURL, 'react_get_page', false, uri);
                     return;

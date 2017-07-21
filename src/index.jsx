@@ -36,9 +36,10 @@ if(document.getElementById('react_header')){
 		}
 		onGetPage() {
 			let _ = this,
+				ds = DataStore,
 				appState = update(_.state, {
 					$merge: {
-						current_page: DataStore.getCachedPage(DataStore.getCurrentPageID(), false)
+						current_page: ds.getCachedPage(ds.getCurrentPageID(), false)
 					}
 				});
 			_.setState(appState);
@@ -91,39 +92,49 @@ if(document.getElementById('react_page')){
 				appState = update(_.state, {
 					$merge: { wp_vars: DataStore.getWpVars() }
 				});
+
 			_.setState(appState);
 		}
 		onPageChange() {
-			let _ = this;
-			_.setState({ current_page_id: DataStore.getCurrentPageID() });
+			let _ = this,
+				ds = DataStore;
 
-			if(DataStore.getCurrentPageID() != null) {
-				API.AJAX_getPage(DataStore.getCurrentPageID(), DataStore.getCurrentPageURL());
+			_.setState({ current_page_id: ds.getCurrentPageID() });
+
+			if(ds.getCurrentPageID() != null) {
+				API.AJAX_getPage(ds.getCurrentPageID(), ds.getCurrentPageURL());
 			}
 		}
 		onGetPage() {
 			let _ = this,
+				ds = DataStore,
 				appState = update(_.state, {
 					$merge: {
-						current_page: DataStore.getCachedPage(DataStore.getCurrentPageID(), false)
+						current_page: ds.getCachedPage(ds.getCurrentPageID(), false)
 					}
 				});
+
 			_.setState(appState);
 		}
 		componentWillMount() {
-			let _ = this;
-			DataStore.on('change', _.onChange);
-			DataStore.on('onPageChange', _.onPageChange);
-			DataStore.on('onGetPage', _.onGetPage);
+			let _ = this,
+				ds = DataStore;
+
+			ds.on('change', _.onChange);
+			ds.on('onPageChange', _.onPageChange);
+			ds.on('onGetPage', _.onGetPage);
 		}
 		componentWillUnmount(){
-			let _ = this;
-			DataStore.removeListener('change', _.onChange);
-			DataStore.removeListener('onPageChange', _.onPageChange);
-			DataStore.removeListener('onGetPage', _.onGetPage);
+			let _ = this,
+				ds = DataStore;
+
+			ds.removeListener('change', _.onChange);
+			ds.removeListener('onPageChange', _.onPageChange);
+			ds.removeListener('onGetPage', _.onGetPage);
 		}
 		render() {
 			let _ = this;
+
 			return (
 				<Page {..._.props} {..._.state} />
 			);
@@ -154,18 +165,22 @@ if(document.getElementById('footer')){
 						current_page: DataStore.getCachedPage(DataStore.getCurrentPageID(), false)
 					}
 				});
+
 			_.setState(appState);
 		}
 		componentWillMount() {
 			let _ = this;
+
 			DataStore.on('onGetPage', _.onGetPage);
 		}
 		componentWillUnmount(){
 			let _ = this;
+
 			DataStore.removeListener('onGetPage', _.onGetPage);
 		}
 		render() {
 			let _ = this;
+
 			return (
 				<Footer {..._.props} {..._.state} />
 			);
