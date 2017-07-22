@@ -21,6 +21,25 @@ let API = {
         });
         return tree;
     },
+    camelize(str) {
+        // returns "page-CustomPage1.php" as "PageCustomPage1"
+        return str.replace(/\.[^/.]+$/, "").match(/[A-Z][a-z]+(?![a-z])|[A-Z]+(?![a-z])|([a-zA-Z\d]+(?=-))|[a-zA-Z\d]+(?=_)|[a-z]+(?=[A-Z])|[A-Za-z0-9]+/g).map(function(s) {
+                return s[0].toUpperCase() + s.substring(1)
+            }).join('');
+    },
+    timeConvert(UNIX_timestamp){
+        var a = new Date(UNIX_timestamp * 1000),
+            months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            monthsNum = ['1','2','3','4','5','6','7','8','9','10','11','12'],
+            year = a.getFullYear(),
+            month = monthsNum[a.getMonth()],
+            date = a.getDate(),
+            hour = a.getHours(),
+            min = a.getMinutes(),
+            sec = a.getSeconds(),
+            time = year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
+        return time;
+    },
     getFromBetween: {
         // getFromBetween.get(string, 'start' ,'end');
         results: [],

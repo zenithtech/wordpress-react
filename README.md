@@ -1,13 +1,14 @@
 # wordpress-react
-A single-page [Wordpress](https://wordpress.com/) bootstrapped theme built with [React](https://facebook.github.io/react/) and [Flux](https://facebook.github.io/flux/), routing with [react-router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router), and bundling with [Webpack](https://github.com/webpack/webpack).
+Componentized single-page [Wordpress](https://wordpress.com/) bootstrapped theme built with [React](https://facebook.github.io/react/) and [Flux](https://facebook.github.io/flux/), routing with [react-router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router), and bundling with [Webpack](https://github.com/webpack/webpack).
 
 ## Features
 - No requirement to install any Wordpress plugins, works out of the box
 - No requirement for special `.htaccess` settings
+- Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
+- Ability to create custom JSX React components templates (See [Custom JSX templates examples](#custom-jsx-templates-examples))
 - Menus built on the client-side from flat trees
 - Separate `dev` and `production` builds <i>(accessed with the `?dev` URL query param)</i> (See [Examples](#examples) below)
 - Maintains non-WP URL query params thoughout the app (See [Query param examples](#query-param-examples) below)
-- Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
 - Requested pages are cached and not requested again
 - Ability to differ cached pages from non-cached
 - Ability to access pages not in the menu and maintain routing
@@ -47,7 +48,7 @@ For internal routing purposes it's recommended above to set Permalinks to Post n
 
 ## Examples
 
-(Use `username`/`password`: `wp` / `wp` for below links)
+(Enter `wp` / `wp` as `username`/`password`)
 
 Example of <b>production</b> build (default):
 
@@ -78,7 +79,17 @@ Example of page with status set as 'Draft'
 [https://zenitht.com/wp/?page_id=1859](https://zenitht.com/wp/?page_id=1859)
 
 
-<b>Query param examples</b>
+## [Custom JSX templates](https://zenitht.com/wp/jsx-custom-templates/) examples
+
+(Enter `wp` / `wp` as `username`/`password`)
+
+Example of custom JSX React component template, consisting of [page-history.jsx](page-history.jsx) and [page-history.php](page-history.php):
+[https://zenitht.com/wp/history/](https://zenitht.com/wp/history/)
+
+
+## Query param examples
+
+(Enter `wp` / `wp` as `username`/`password`)
 
 Example of <b>production</b> build accessed with `page_id&someParam` params, maintaining `someParam` param:
 
@@ -97,7 +108,9 @@ Example of <b>dev</b> build accessed with `page_id&dev&p&someParam` params, main
 [https://zenitht.com/wp/?page_id=35&dev&someParam=123123](https://zenitht.com/wp/?page_id=35&dev&someParam=123123)
 
 
-<b>Plugin test examples</b>
+## Plugin test examples
+
+(Enter `wp` / `wp` as `username`/`password`)
 
 Example of [wordpress-zSlider](https://github.com/zenithtech/wordpress-zSlider) within custom template:
 

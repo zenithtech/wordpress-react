@@ -21,8 +21,6 @@ if( isset($via_ajax) ) {
 	}
 </style>
 
-<div id="test_comp"></div>
-
 <div class="container">
 	<p>
 	Custom template <b>page-CustomPage1.php</b>

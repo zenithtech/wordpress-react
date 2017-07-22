@@ -8,6 +8,7 @@
     "email": "sami.shelah@icloud.com"
   },
   "dependencies": {
+    "babel-plugin-wildcard": "^2.1.2",
     "flux": "^3.1.2",
     "immutability-helper": "^2.1.2",
     "react": "^15.4.2",

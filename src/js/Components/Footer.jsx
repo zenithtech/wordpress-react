@@ -18,6 +18,7 @@ class WPFooterHooks extends Component {
 		if(DataStore.isCachedPage() == 1){
 			API.triggerPageLoad();
 			console.log('DataStore.isCachedPage: 1');
+			console.log(DataStore.data.pages_cache);
 		} else {
 			console.log('DataStore.isCachedPage: 0');
 		}
