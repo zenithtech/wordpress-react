@@ -79,12 +79,16 @@ Example of page with status set as 'Draft'
 [https://zenitht.com/wp/?page_id=1859](https://zenitht.com/wp/?page_id=1859)
 
 
-## [Custom JSX templates](https://zenitht.com/wp/jsx-custom-templates/) examples
+
+## Custom JSX templates examples
 
 (Enter `wp` / `wp` as `username`/`password`)
 
 Example of custom JSX React component template, consisting of [page-history.jsx](page-history.jsx) and [page-history.php](page-history.php):
+
 [https://zenitht.com/wp/history/](https://zenitht.com/wp/history/)
+More details [here](https://zenitht.com/wp/jsx-custom-templates/).
+
 
 
 ## Query param examples
@@ -106,6 +110,7 @@ Example of <b>dev</b> build accessed with `dev&page_id` params, maintaining `dev
 Example of <b>dev</b> build accessed with `page_id&dev&p&someParam` params, maintaining `dev&someParam` params:
 
 [https://zenitht.com/wp/?page_id=35&dev&someParam=123123](https://zenitht.com/wp/?page_id=35&dev&someParam=123123)
+
 
 
 ## Plugin test examples
