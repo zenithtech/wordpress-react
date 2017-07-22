@@ -87,7 +87,8 @@ Example of page with status set as 'Draft'
 Example of custom JSX React component template, consisting of [page-history.jsx](page-history.jsx) and [page-history.php](page-history.php):
 
 [https://zenitht.com/wp/history/](https://zenitht.com/wp/history/)
-More details [here](https://zenitht.com/wp/jsx-custom-templates/).
+
+See more details at [https://zenitht.com/wp/jsx-custom-templates/](https://zenitht.com/wp/jsx-custom-templates/).
 
 
 
