@@ -23,7 +23,7 @@ if( isset($via_ajax) ) {
 
 <div class="container">
 	<h3><br /><b>History Component:</b> Custom JSX Wordpress template</h3>
-	<p>This is custom React component that shows the history of pages you visited retreived from the cached in the app:
+	<p>This is custom React component that shows the history of pages you visited retreived from the app cache:
 	<br />
 	<br />
 	</p>
