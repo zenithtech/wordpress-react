@@ -82,6 +82,8 @@ Example of page with status set as 'Draft'
 
 ## Custom JSX templates examples
 
+![screenshot_0](https://zenitht.com/screenshots/wp-react/screenshot_0.png)
+
 (Enter `wp` / `wp` as `username`/`password`)
 
 Example of custom JSX React component template, consisting of [page-history.jsx](page-history.jsx) and [page-history.php](page-history.php):

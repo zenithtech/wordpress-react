@@ -4,9 +4,7 @@
 */
 
 include('inc/page-header.php');
-
-if( isset($via_ajax) ) {
-?>
+if( isset($via_ajax) ) { ?>
 
 <style type="text/css">
 	body {
@@ -42,8 +40,4 @@ if( isset($via_ajax) ) {
 	alert('Multiple script tags. Another alert in another script tag.');
 </script>
 
-<?php
-}
-
-include('inc/page-footer.php');
-?>
+<?php } include('inc/page-footer.php'); ?>

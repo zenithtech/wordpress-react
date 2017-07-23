@@ -4,9 +4,7 @@
 */
 
 include('inc/page-header.php');
-
-if( isset($via_ajax) ) {
-?>
+if( isset($via_ajax) ) { ?>
 
 <style type="text/css">
 	ul#history_items {
@@ -34,8 +32,4 @@ if( isset($via_ajax) ) {
 	</p>
 </div>
 
-<?php
-}
-
-include('inc/page-footer.php');
-?>
+<?php } include('inc/page-footer.php'); ?>
