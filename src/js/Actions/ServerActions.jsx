@@ -30,6 +30,13 @@ let ServerActions = {
 			});
 		}
 	},
+	cacheUpdated() {
+		if(!AppDispatcher.isDispatching()) {
+			AppDispatcher.dispatch({
+				actionType: ActionTypes.CACHE_UPDATED
+			});
+		}
+	},
 
 	// AjaxDispatcher
 	getPageFromCache(id) {
@@ -47,6 +54,7 @@ let ServerActions = {
 			});
 		}
 	}
+
 };
 
 export default ServerActions;

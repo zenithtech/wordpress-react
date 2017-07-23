@@ -30,6 +30,9 @@ class DataStore extends EventEmitter {
 					_.data.menu_tree = action.items;
 					_.emit('onMenuTreeUpdate');
 					break;
+				case ActionTypes.CACHE_UPDATED:
+					_.emit('cacheUpdated');
+					break;
 				default:
 			}
 		});
