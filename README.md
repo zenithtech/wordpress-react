@@ -80,7 +80,7 @@ Example of page with status set as 'Draft'
 
 
 
-## Custom JSX templates examples
+## Custom React components in JSX templates examples
 
 ![screenshot_0](https://zenitht.com/screenshots/wp-react/screenshot_0.png)
 
