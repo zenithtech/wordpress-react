@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import ServerActions from './src/js/Actions/ServerActions.jsx';
-import DataStore from './src/js/Stores/DataStore.jsx';
+import {
+    NavLink
+} from 'react-router-dom';
 import API from './src/js/API.jsx';
+import DataStore from './src/js/Stores/DataStore.jsx';
+import ServerActions from './src/js/Actions/ServerActions.jsx';
 
 class Item extends Component {
     constructor(props){
@@ -16,12 +18,16 @@ class Item extends Component {
         console.log('Deleted page ' + id + ' from cache.');
     }
     render(){
-        let _ = this;
+        let _ = this,
+            { url } = _.props,
+            { PATHINFO_BASENAME, siteurl } = _.props.wp_vars.constants,
+            toUrl = '/'+PATHINFO_BASENAME+url.replace(siteurl, '');
+
         return (
             <li className="history_item" key={_.props.page_id}>
                 <p>Page title: {_.props.the_title} </p>
                 <p>Page ID: {_.props.page_id}</p>
-                <p>Page URL: <a href={_.props.url} target="_self">{_.props.url}</a></p>
+                <p>Page URL: <a href={url}>{url}</a></p>
                 <p>Request time: {_.props.date_formatted}</p>
                 <p>&nbsp;</p>
                 <div className="btn" onClick={_.deletePageFromCache.bind(_, _.props.page_id)}>Delete from cache</div>
@@ -67,7 +73,7 @@ class History extends Component {
             }
 
             if( typeof _.props.current_page.html != 'undefined' ) {
-                html = 'current_page_id: ' + current_page_id + _.props.current_page.html;
+                html = _.props.current_page.html;
             }
 
         }
@@ -92,6 +98,7 @@ class History extends Component {
                             date_formatted = {date_formatted}
                             url = {currentValue.url}
                             the_title = {currentValue.the_title}
+                            {..._.props}
                         />
                     );
                 }

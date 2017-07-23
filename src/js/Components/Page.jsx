@@ -35,7 +35,7 @@ class Page extends Component {
 				    JSX_comp = JSX[page_template_camelize];
 				}
 
-				html = 'current_page_id: ' + current_page_id + _.props.current_page.html;
+				html = _.props.current_page.html;
 			}
 
 			// JSX_objects_map = Object
