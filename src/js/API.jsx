@@ -209,6 +209,14 @@ let API = {
     get_wp_vars() {
         ServerActions.getWpVars(window.app);
     },
+    evalScripts(current_page){
+        current_page = current_page ? current_page : false;
+
+        if(current_page && current_page.wp_head){
+            API.windowGarbageCollection();
+            window.jQuery('head').html(current_page.wp_head);
+        }
+    },
     set_current_page_id(origin, pathname, id) {
         var _ = this;
 
@@ -233,6 +241,30 @@ let API = {
             }
         } else {
             ServerActions.setCurrentPageID(id);
+        }
+    },
+    transitionToCurrentPage(object_id, url){
+        let _ = this,
+            CurrentPageID = DataStore.getCurrentPageID(),
+            { origin, pathname } = document.location;
+
+        object_id = object_id ? object_id : 0;
+        url = url ? url : origin + pathname;
+
+        if( !_.getParameter('page_id') && CurrentPageID != object_id ){
+            let { PATHINFO_BASENAME, siteurl } = DataStore.data.wp_vars.constants,
+                toUrl = '/'+PATHINFO_BASENAME+url.replace(siteurl, '');
+            if( pathname == toUrl ){
+                _.set_current_page_id(origin, pathname, false);
+                return;
+            }
+        }
+
+        if( ( _.getParameter('page_id') && _.getParameter('page_id').toString() == object_id && CurrentPageID != object_id ) || 
+            ( _.getParameter('page_id') && _.getParameter('page_id').toString() != object_id && CurrentPageID == object_id )
+            ) {
+            _.set_current_page_id(false, false, _.getParameter('page_id'));
+            return;
         }
     },
     react_get_page(url, action, id, uri) {

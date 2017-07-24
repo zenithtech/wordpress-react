@@ -13,18 +13,6 @@ class Menu extends Component {
             menu_items: null
         };
         _.onMenuTreeUpdate = _.onMenuTreeUpdate.bind(_);
-        _.evalScripts = _.evalScripts.bind(_);
-    }
-    evalScripts(){
-        var _ = this,
-            current_page = {},
-            wp_head = '',
-            jq = window.jQuery;
-
-        if(_.props.current_page){
-            API.windowGarbageCollection();
-            jq('head').html(_.props.current_page.wp_head);
-        }
     }
     onMenuTreeUpdate() {
         let _ = this;
@@ -37,11 +25,11 @@ class Menu extends Component {
 
         if( typeof _.props.current_page != 'undefined' ) {
             if(typeof prevProps.current_page == 'undefined'){
-                _.evalScripts();
+                API.evalScripts(_.props.current_page);
                 return;
             }
             if(typeof prevProps.current_page.page_id != 'undefined' && prevProps.current_page.page_id != _.props.current_page.page_id){
-                _.evalScripts();
+                API.evalScripts(_.props.current_page);
                 return;
             }
         }
@@ -99,32 +87,20 @@ class Child extends Component {
     constructor(props){
         super(props);
         let _ = this;
-        _.setCurrentPageID = _.setCurrentPageID.bind(_);
+        _.callSetCurrentPageID = _.callSetCurrentPageID.bind(_);
     }
-    setCurrentPageID(){
+    callSetCurrentPageID(){
         let _ = this,
             item = _.props.node,
-            { object_id, url } = item,
-            CurrentPageID = DataStore.getCurrentPageID();
+            { object_id, url } = item;
 
-        if( !API.getParameter('page_id') && CurrentPageID != object_id ){
-            let { PATHINFO_BASENAME, siteurl } = _.props.wp_vars.constants,
-                toUrl = '/'+PATHINFO_BASENAME+url.replace(siteurl, '');
-            if( _.props.location.pathname == toUrl ){
-                API.set_current_page_id(document.location.origin, document.location.pathname, false);
-                return;
-            }
-        }
-
-        if( ( API.getParameter('page_id') && API.getParameter('page_id').toString() == object_id && CurrentPageID != object_id ) || 
-            ( API.getParameter('page_id') && API.getParameter('page_id').toString() != object_id && CurrentPageID == object_id )
-            ) {
-            API.set_current_page_id(false, false, API.getParameter('page_id'));
-            return;
-        }
+        API.transitionToCurrentPage(object_id, url);
     }
-    componentDidUpdate(){
-        this.setCurrentPageID();
+    componentDidUpdate(prevProps) {
+        let _ = this;
+        if (_.props.location !== prevProps.location) {
+            _.callSetCurrentPageID();
+        }
     }
     render() {
         let _ = this,

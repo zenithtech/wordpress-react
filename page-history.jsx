@@ -21,13 +21,13 @@ class Item extends Component {
         let _ = this,
             { url } = _.props,
             { PATHINFO_BASENAME, siteurl } = _.props.wp_vars.constants,
-            toUrl = '/'+PATHINFO_BASENAME+url.replace(siteurl, '');
+            toUrl = '/'+PATHINFO_BASENAME+url.replace(siteurl, '') + document.location.search;
 
         return (
             <li className="history_item" key={_.props.page_id}>
                 <p>Page title: {_.props.the_title} </p>
                 <p>Page ID: {_.props.page_id}</p>
-                <p>Page URL: <a href={url}>{url}</a></p>
+                <p>Page URL: <NavLink to={toUrl}>{toUrl}</NavLink></p>
                 <p>Request time: {_.props.date_formatted}</p>
                 <p>&nbsp;</p>
                 <div className="btn" onClick={_.deletePageFromCache.bind(_, _.props.page_id)}>Delete from cache</div>
@@ -55,6 +55,11 @@ class History extends Component {
             ds = DataStore;
         ds.removeListener('cacheUpdated', _.onCacheUpdated);
     }
+    componentDidUpdate(prevProps) {
+        if (this.props.location !== prevProps.location) {
+            API.transitionToCurrentPage();
+        }
+    }
     render() {
         let _ = this,
             blogdescription = '',
@@ -81,7 +86,7 @@ class History extends Component {
         pages_cache_html = Object
             .keys(pages_cache)
             .map( (currentValue, index, array) => {
-                if(currentValue != 'last_page_id'){
+                if(currentValue != 'last_page_id' && (_.props.current_page_id != currentValue.page_id)){
                     return pages_cache[currentValue];
                 }
             })
@@ -100,15 +105,19 @@ class History extends Component {
                             the_title = {currentValue.the_title}
                             {..._.props}
                         />
-                    );
+                    )
                 }
-
             });
+
 
         return (
             <div className="clearfix">
                 <div dangerouslySetInnerHTML={{__html: html }}></div>
-                { pages_cache_html.length > 0 ? <ul id="history_items">{pages_cache_html}</ul> : '' }
+                { pages_cache_html.length > 1 ?
+                    <ul id="history_items">{pages_cache_html}</ul>
+                    : 
+                    <p>Cache is empty.</p>
+                }
             </div>
         );
     }

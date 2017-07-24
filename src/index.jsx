@@ -19,7 +19,7 @@ import './css/main.css';
 window.window_cache = API.clone(window);
 
 if(document.getElementById('react_header')){
-	class react_header extends Component {
+	class ReactHeader extends Component {
 		constructor(props){
 			super(props);
 			let _ = this;
@@ -70,7 +70,7 @@ if(document.getElementById('react_header')){
 
 	ReactDOM.render((
 		<Router history={browserHistory}>
-			<Route path='/' component={react_header} />
+			<Route path='/' component={ReactHeader} />
 		</Router>
 		), document.getElementById('react_header')
 	);
@@ -78,7 +78,7 @@ if(document.getElementById('react_header')){
 }
 
 if(document.getElementById('react_page')){
-	class react_page extends Component {
+	class ReactPage extends Component {
 		constructor(props){
 			super(props);
 			let _ = this;
@@ -143,7 +143,7 @@ if(document.getElementById('react_page')){
 
 	ReactDOM.render((
 		<Router history={browserHistory}>
-			<Route path='/' component={react_page} />
+			<Route path='/' component={ReactPage} />
 		</Router>
 		), document.getElementById('react_page')
 	);
@@ -151,7 +151,7 @@ if(document.getElementById('react_page')){
 }
 
 if(document.getElementById('footer')){
-	class footer extends Component {
+	class ReactFooter extends Component {
 		constructor(props){
 			super(props);
 			let _ = this;
@@ -189,7 +189,7 @@ if(document.getElementById('footer')){
 
 	ReactDOM.render((
 		<Router history={browserHistory}>
-			<Route path='/' component={footer} />
+			<Route path='/' component={ReactFooter} />
 		</Router>
 		), document.getElementById('footer')
 	);
