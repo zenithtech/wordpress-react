@@ -38,7 +38,8 @@
         <style type="text/css">
             <?php
                 echo file_get_contents(dirname(__FILE__).'/build/'.$GLOBALS['env'].'/'.$GLOBALS['asset_manifest']['main.css']).
-                    file_get_contents(dirname(__FILE__).'/style.css'); ?>
+                    file_get_contents(dirname(__FILE__).'/style.css');
+            ?>
         </style>
 
         <!-- START #page -->

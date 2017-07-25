@@ -21,7 +21,7 @@ class Item extends Component {
         let _ = this,
             { url } = _.props,
             { PATHINFO_BASENAME, siteurl } = _.props.wp_vars.constants,
-            toUrl = '/'+PATHINFO_BASENAME+url.replace(siteurl, '') + document.location.search;
+            toUrl = '/'+PATHINFO_BASENAME+url.replace(siteurl, '');
 
         return (
             <li className="history_item" key={_.props.page_id}>

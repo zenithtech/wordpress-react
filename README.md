@@ -15,6 +15,7 @@ Componentized single-page [Wordpress](https://wordpress.com/) bootstrapped theme
 - Ability to access pages via any permalink type (See [Notes](#notes) below)
 - Dynamic `<head>` tag, `wp_head()` and `wp_footer()` hooks
 - Ability install and use WP plugins regularly (See [Plugin test examples](#plugin-test-examples) below)
+- [PageSpeed](https://developers.google.com/speed/pagespeed/) results around 90% without optimization
 
 ----
 
