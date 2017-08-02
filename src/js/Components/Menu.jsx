@@ -18,7 +18,7 @@ class Menu extends Component {
         let _ = this;
 
         console.log('4. In View > react_page > onMenuTreeUpdate');
-        _.setState({ menu_items: DataStore.getMenuTree() });
+        _.setState({ menu_items: DataStore.getMenuTree(_.props.menu_name) });
     }
     componentDidUpdate(prevProps, prevState) {
         let _ = this
@@ -44,7 +44,6 @@ class Menu extends Component {
     }
     render() {
         let _ = this,
-            blogdescription = '',
             nodes = '',
             wp_vars = '',
             constants = {},
@@ -64,7 +63,6 @@ class Menu extends Component {
                     />
                 );
             });
-            blogdescription = _.props.wp_vars.constants.blogdescription;
         }
 
         if(_.props.current_page){
@@ -73,11 +71,8 @@ class Menu extends Component {
         }
 
         return (
-            <nav id="site-navigation" className="container">
-                <p>{blogdescription}</p>
-                <ul id="top-menu" className="menu">
-                    {nodes}
-                </ul>
+            <nav id={_.props.id} className="site-navigation">
+                <ul>{nodes}</ul>
             </nav>
         );
     }
@@ -145,7 +140,6 @@ class Child extends Component {
                 paramsString = Object
                     .keys(mappedParams)
                     .map( (currentValue, index, array) => {
-
                         if( currentValue != 'page_id' ){
                             var value = mappedParams[currentValue][0] == undefined ? '' : '='+mappedParams[currentValue][0];
                             urlString += currentValue + value;
@@ -154,9 +148,7 @@ class Child extends Component {
                                 urlString += '&';
                             }
                         }
-
                     });
-
 
             // Plain permalinks
             if( (_.props.location.search != '' && toUrl.match(/\?./)) ){
@@ -177,7 +169,6 @@ class Child extends Component {
         return (
             not_in_menu ? false :
             <li key={ID}
-                id={'menu-item-'+ID.toString()}
                 className = {'page_item page-item-'+object_id.toString() + ' menu-item-' + ID.toString() + isActive + hasChildren}>
                 <NavLink to={toUrl}>{title}</NavLink>
                 { childnodes.length > 0 ? <ul className="sub-menu">{childnodes}</ul> : '' }

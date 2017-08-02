@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from '../API.jsx';
 import DataStore from '../Stores/DataStore.jsx';
+import Menu from '../Components/Menu.jsx';
 
 class WPFooterHooks extends Component {
 	constructor(props){
@@ -66,6 +67,7 @@ class Footer extends Component {
 		return (
 			<div className="container">
 				footer content
+				<Menu menu_name="Footer Menu" id="footer-menu" {..._.props} {..._.state} />
 				<WPFooterHooks {..._.props} />
 			</div>
 		);

@@ -61,7 +61,10 @@ class DataStore extends EventEmitter {
 	}
 	getWpVars(val){
 		var _ = this;
-		if(val){
+		if( val &&
+			typeof _.data.wp_vars.constants != 'undefined' &&
+			typeof _.data.wp_vars.constants[val] != 'undefined'
+			){
 			return _.data.wp_vars.constants[val];
 		}
 		return _.data.wp_vars;
@@ -82,10 +85,9 @@ class DataStore extends EventEmitter {
 		} else {
 			return currItem.url;
 		}
-
 	}
-	getMenuTree(){
-		return this.data.menu_tree;
+	getMenuTree(menu_name){
+		return this.data.menu_tree[menu_name];
 	}
 	getCachedPage(id, bool){
 		let _ = this;

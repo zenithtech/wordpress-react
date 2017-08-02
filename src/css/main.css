@@ -39,8 +39,8 @@ img {
     z-index: 999;
 }
 
-#react_header ul#top-menu,
-#react_header ul#top-menu ul {
+#react_header nav#top-menu,
+#react_header nav#top-menu ul {
     display: block;
     width: auto;
     position: relative;
@@ -48,46 +48,46 @@ img {
     margin: 0;
 }
 
-#react_header ul#top-menu li ul.sub-menu {
+#react_header nav#top-menu li ul.sub-menu {
     display: none;
     position: absolute;
     left: 0;
     z-index: 1;
 }
 
-#react_header ul#top-menu li ul.sub-menu>li {
+#react_header nav#top-menu li ul.sub-menu>li {
     display: block;
     position: relative;
     background-color: #eee;
 }
 
-#react_header ul#top-menu>li>ul.sub-menu li>ul.sub-menu {
+#react_header nav#top-menu>ul>li>ul.sub-menu li>ul.sub-menu {
     left: 100%;
     right: auto;
     top: 0;
     position: absolute;
 }
 
-#react_header ul#top-menu li {
+#react_header nav#top-menu li {
     display: inline-block;
     position: relative;
     vertical-align: top;
 }
 
-#react_header ul#top-menu li:hover>a {
+#react_header nav#top-menu li:hover>a {
     background-color: #e7f4ff;
 }
 
-#react_header ul#top-menu li.menu-item-has-children:hover>ul.sub-menu {
+#react_header nav#top-menu li.menu-item-has-children:hover>ul.sub-menu {
     display: block;
     width: auto;
 }
 
-#react_header ul#top-menu li a {
+#react_header nav#top-menu li a {
     color: #0275d8;
 }
 
-#react_header ul#top-menu li a {
+#react_header nav#top-menu li a {
     display: block;
     line-height: 1;
     padding: 10px 20px;
@@ -99,7 +99,7 @@ img {
     white-space: nowrap;
 }
 
-#react_header ul#top-menu li.menu-item-has-children>a:after {
+#react_header nav#top-menu li.menu-item-has-children>a:after {
     content: '▸';
     position: relative;
     font-family: 'FontAwesome';
@@ -110,11 +110,11 @@ img {
     display: inline-block;
 }
 
-#react_header ul#top-menu li.menu-item-has-children:hover>a:after {
+#react_header nav#top-menu li.menu-item-has-children:hover>a:after {
     content: '▾';
 }
 
-#react_header ul#top-menu li.current_page_item>a {
+#react_header nav#top-menu li.current_page_item>a {
     color: #fff;
     background-color: #0275d8;
 }

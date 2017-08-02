@@ -17,6 +17,9 @@ if( isset($via_ajax) ) { ?>
 	#footer {
 		background-color: #0275d8;
 	}
+	#footer .site-navigation a {
+		color: #fff;
+	}
 </style>
 
 <div class="container">

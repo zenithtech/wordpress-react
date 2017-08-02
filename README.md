@@ -6,6 +6,7 @@ Componentized single-page [Wordpress](https://wordpress.com/) bootstrapped theme
 - No requirement for special `.htaccess` settings
 - Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
 - Ability to create custom JSX React component templates (See [Custom JSX templates examples](#custom-jsx-templates-examples))
+- Ability to use multiple menus <i>(eg. header menu, footer menu)</i>
 - Menus built on the client-side from flat trees
 - Separate `dev` and `production` builds <i>(accessed with the `?dev` URL query param)</i> (See [Examples](#examples) below)
 - Maintains non-WP URL query params thoughout the app (See [Query param examples](#query-param-examples) below)
@@ -15,7 +16,7 @@ Componentized single-page [Wordpress](https://wordpress.com/) bootstrapped theme
 - Ability to access pages via any permalink type (See [Notes](#notes) below)
 - Dynamic `<head>` tag, `wp_head()` and `wp_footer()` hooks
 - Ability install and use WP plugins regularly (See [Plugin test examples](#plugin-test-examples) below)
-- [PageSpeed](https://developers.google.com/speed/pagespeed/) results around 90% without optimization
+- PageSpeed results around 90% without optimization
 
 ----
 

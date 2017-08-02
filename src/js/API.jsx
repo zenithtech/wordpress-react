@@ -58,15 +58,10 @@ let API = {
             this.string = this.string.replace(removal,"");
         },
         getAllResults:function (sub1,sub2) {
-            // first check to see if we do have both substrings
             if(this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0) return;
-            // find one result
             var result = this.getFromBetween(sub1,sub2);
-            // push it to the results array
             this.results.push(result);
-            // remove the most recently found one from the string
             this.removeFromBetween(sub1,sub2);
-            // if there's more substrings
             if(this.string.indexOf(sub1) > -1 && this.string.indexOf(sub2) > -1) {
                 this.getAllResults(sub1,sub2);
             }
@@ -81,8 +76,16 @@ let API = {
     },
     set_menu_tree(items) {
         console.log('1. In API > set_menu_tree start');
-        let _ = this;
-        ServerActions.setMenuTree(_.make_tree(items));
+        let _ = this,
+            menus = [],
+            menuTrees = Object
+                .keys(items)
+                .map( (currentValue) => {
+                    menus[currentValue] = _.make_tree(items[currentValue]);
+                });
+
+        ServerActions.setMenuTree(menus);
+
         console.log('5. In API > set_menu_tree complete.');
     },
     get_params(string) {
@@ -218,25 +221,33 @@ let API = {
         }
     },
     set_current_page_id(origin, pathname, id) {
-        var _ = this;
+        var _ = this,
+            ds = DataStore;
 
         if(!id){
             if(_.getParameter('page_id')){
                 ServerActions.setCurrentPageID(_.getParameter('page_id').toString());
             } else {
 
-                var menu_items = window.app.constants.menu_items,
-                    findItem = function(item) { 
+                var findItem = function(item) { 
                         return item.url === origin + pathname;
                     },
-                    currItem = menu_items.find(findItem);
+                    currItem = false,
+                    menus = ds.getWpVars('menus'),
+                    items = Object
+                        .keys(menus)
+                        .map( (currentValue) => {
+                            if(menus[currentValue].find(findItem)){
+                                currItem = menus[currentValue].find(findItem);
+                                return;
+                            }
+                        });
 
-                if(typeof currItem != 'undefined'){
+                if(currItem != false){
                     ServerActions.setCurrentPageID(currItem.object_id);
                 } else {
                     // if requested page not in menu
-                    var wpVars = DataStore.getWpVars();
-                    _.react_get_post_not_in_menu(wpVars.constants.ajaxSubmitURL, 'react_get_post_not_in_menu', document.location.pathname);
+                    _.react_get_post_not_in_menu(ds.getWpVars('ajaxSubmitURL'), 'react_get_post_not_in_menu', document.location.pathname);
                 }
             }
         } else {
@@ -351,11 +362,15 @@ let API = {
         req.onreadystatechange = function() {
             if (req.readyState == 4 && req.status == 200) {
                 var data = parseReq(req),
-                    parsed = JSON.parse(data);
+                    parsed = JSON.parse(data),
+                    menus = DataStore.getWpVars('menus'),
+                    menuTrees = Object
+                        .keys(menus)
+                        .map( (currentValue) => {
+                            menus[currentValue].push(parsed);
+                        });
 
-                window.app.constants.menu_items.push(parsed);
-                _.get_wp_vars();
-                _.set_menu_tree(window.app.constants.menu_items);
+                _.set_menu_tree(menus);
                 ServerActions.setCurrentPageID(parsed.object_id);
             }
             if (req.readyState == 4 && req.status == 400) {
@@ -366,8 +381,7 @@ let API = {
     },
     AJAX_getPage(id, uri){
         var _ = this,
-            ds = DataStore,
-            wpVars = ds.getWpVars();
+            ds = DataStore;
         if (id != false ){
             if(ds.getCachedPage(id, true)){
                 ds.setIsCachedPage(1);
@@ -375,12 +389,12 @@ let API = {
             } else {
                 ds.setIsCachedPage(0);
                 if (uri != false ){
-                    _.react_get_page(wpVars.constants.ajaxSubmitURL, 'react_get_page', false, uri);
+                    _.react_get_page(ds.getWpVars('ajaxSubmitURL'), 'react_get_page', false, uri);
                     return;
                 } else {
                     // in case post_status is not 'publish', and item is not in menu
                     // eg. accessed from 'Preview' link, or with 'p' or 'page_id' params
-                    _.react_get_page(wpVars.constants.ajaxSubmitURL, 'react_get_page', id, false);
+                    _.react_get_page(ds.getWpVars('ajaxSubmitURL'), 'react_get_page', id, false);
                     return;
                 }
             }
