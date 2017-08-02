@@ -27,8 +27,7 @@
                         'menus': {
                             'Top Menu': <?php echo json_encode(wp_get_nav_menu_items('Top Menu')); ?>,
                             'Footer Menu': <?php echo json_encode(wp_get_nav_menu_items('Footer Menu')); ?>
-                        },
-                        'menu_items': <?php echo json_encode(wp_get_nav_menu_items('Top Menu')); ?>
+                        }
                     };
                     return t;
                 }();

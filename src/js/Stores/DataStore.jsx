@@ -74,13 +74,21 @@ class DataStore extends EventEmitter {
 	}
 	getCurrentPageURL(){
 		var _ = this,
-			menu_items = _.data.wp_vars.constants.menu_items,
-			findItem = function(item) {
+			findItem = function(item) { 
 				return item.object_id == _.data.current_page_id;
-			},
-			currItem = menu_items.find(findItem);
+            },
+            currItem = false,
+            menus = _.data.wp_vars.constants.menus,
+            items = Object
+                .keys(menus)
+                .map( (currentValue) => {
+                    if(menus[currentValue].find(findItem)){
+                        currItem = menus[currentValue].find(findItem);
+                        return;
+                    }
+                });
 
-		if(typeof currItem == 'undefined'){
+		if(currItem == false){
 			return false;
 		} else {
 			return currItem.url;
