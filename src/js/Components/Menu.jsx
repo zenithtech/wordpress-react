@@ -13,6 +13,7 @@ class Menu extends Component {
             menu_items: null
         };
         _.onMenuTreeUpdate = _.onMenuTreeUpdate.bind(_);
+        // _.onPageChange = _.onPageChange.bind(_);
     }
     onMenuTreeUpdate() {
         let _ = this;
@@ -20,27 +21,36 @@ class Menu extends Component {
         console.log('4. In View > react_page > onMenuTreeUpdate');
         _.setState({ menu_items: DataStore.getMenuTree(_.props.menu_name) });
     }
+    // onPageChange() {}
     componentDidUpdate(prevProps, prevState) {
         let _ = this
 
         if( typeof _.props.current_page != 'undefined' ) {
-            if(typeof prevProps.current_page == 'undefined'){
+            if( typeof prevProps.current_page == 'undefined'
+                ) {
                 API.evalScripts(_.props.current_page);
                 return;
             }
-            if(typeof prevProps.current_page.page_id != 'undefined' && prevProps.current_page.page_id != _.props.current_page.page_id){
+            if( typeof prevProps.current_page.page_id != 'undefined' && 
+                prevProps.current_page.page_id != _.props.current_page.page_id ){
                 API.evalScripts(_.props.current_page);
                 return;
             }
         }
     }
     componentWillMount() {
-        let _ = this;
-        DataStore.on('onMenuTreeUpdate', _.onMenuTreeUpdate);
+        let _ = this,
+            ds = DataStore;
+
+        ds.on('onMenuTreeUpdate', _.onMenuTreeUpdate);
+        // ds.on('onPageChange', _.onPageChange);
     }
     componentWillUnmount(){
-        let _ = this;
-        DataStore.removeListener('onMenuTreeUpdate', _.onMenuTreeUpdate);
+        let _ = this,
+            ds = DataStore;
+
+        ds.removeListener('onMenuTreeUpdate', _.onMenuTreeUpdate);
+        // ds.removeListener('onPageChange', _.onPageChange);
     }
     render() {
         let _ = this,
@@ -106,8 +116,9 @@ class Child extends Component {
             hasChildren = '',
             urlString = '';
 
-        if( (_.props.location.pathname == toUrl && !API.getParameter('page_id') ) ||
-            API.getParameter('page_id').toString() == object_id ){
+        if((_.props.location.pathname == toUrl && !API.getParameter('page_id') ) ||
+            API.getParameter('page_id').toString() == object_id
+            ){
             isActive = ' current_page_item';
         }
 

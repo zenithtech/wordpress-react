@@ -88,7 +88,7 @@ Example of page with status set as 'Draft'
 
 (Enter `wp` / `wp` as `username`/`password`)
 
-Example of custom JSX React component template, consisting of [page-history.jsx](page-history.jsx) and [page-history.php](page-history.php):
+Example of custom JSX React component template, consisting of [page-history.jsx](page-history.jsx) and [page-history.php](page-history.php) pair:
 
 [https://zenitht.com/wp/history/](https://zenitht.com/wp/history/)
 

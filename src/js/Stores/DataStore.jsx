@@ -13,7 +13,8 @@ class DataStore extends EventEmitter {
 			'menu_tree': [],
 			'pages_cache': [],
 			'wp_footer_hooks': '',
-			'isCachedPage': 0
+			'isCachedPage': 0,
+			'current_object_id': null
 		};
 		AppDispatcher.register(action => {
 			switch(action.actionType){
@@ -52,6 +53,9 @@ class DataStore extends EventEmitter {
 	}
 	getData(val){
 		return this.data[val];
+	}
+	setData(item, val){
+		return this.data[item] = val;
 	}
 	isCachedPage(){
 		return this.data.isCachedPage;
