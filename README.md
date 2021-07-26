@@ -5,7 +5,7 @@ Componentized single-page [Wordpress](https://wordpress.com/) bootstrapped theme
 - No requirement to install any Wordpress plugins, works out-of-the-box
 - No requirement for special `.htaccess` settings
 - Ability to create regular Wordpress custom templates, and include shortcodes, JS, and PHP
-- Ability to create custom JSX React component templates (See [Custom JSX templates examples](#custom-jsx-templates-examples))
+- Ability to create custom JSX React component templates (See [Custom JSX templates examples](#custom-react-components-in-jsx-templates-examples))
 - Ability to use multiple menus <i>(eg. header menu, footer menu)</i>
 - Menus built on the client-side from flat trees
 - Separate `dev` and `production` builds <i>(accessed with the `?dev` URL query param)</i> (See [Examples](#examples) below)
